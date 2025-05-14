@@ -1,0 +1,14 @@
+.main-container {
+  display: flex;
+}
+
+.sidebar-container {
+  width: 250px;
+}
+
+.login-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
