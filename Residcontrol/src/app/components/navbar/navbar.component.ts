@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 
+
 @Component({
   selector: 'app-navbar',
   standalone: true,
@@ -10,8 +11,8 @@ import { MatButtonModule } from '@angular/material/button';
   template: `
     <mat-toolbar color="primary" class="navbar">
       <div class="navbar-logos">
-        <img src="assets/logo1.png" alt="Logo 1" class="logo" />
-        <img src="assets/logo2.png" alt="Logo 2" class="logo" />
+        <img src="assets/img/ResidControl.png" alt="Logo Aplicacion" class="logo" />
+        <img src="assets/img/ResidenciaAbrazos.png" alt="Logo Residencia" class="logo" />
       </div>
       <div class="navbar-texts">
         <span class="navbar-text upper">Lorem Ipsum Superior</span>
