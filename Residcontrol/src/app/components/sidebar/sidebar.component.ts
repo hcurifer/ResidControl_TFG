@@ -19,19 +19,19 @@ import { MatButtonModule } from '@angular/material/button';
       >
         <mat-nav-list>
           <button mat-list-item>
-            <mat-icon>home</mat-icon> Botón 1
+            <mat-icon>home</mat-icon> Dashboard
           </button>
           <button mat-list-item>
-            <mat-icon>star</mat-icon> Botón 2
+            <mat-icon>task_alt</mat-icon> Tareas
           </button>
           <button mat-list-item>
-            <mat-icon>settings</mat-icon> Botón 3
+            <mat-icon>assignment_add</mat-icon> Progreso
           </button>
           <button mat-list-item>
-            <mat-icon>info</mat-icon> Botón 4
+            <mat-icon>email</mat-icon> Feedback
           </button>
           <button mat-list-item>
-            <mat-icon>help</mat-icon> Botón 5
+            <mat-icon>feedback</mat-icon> Alarmas
           </button>
         </mat-nav-list>
       </mat-sidenav>

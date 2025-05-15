@@ -1,0 +1,59 @@
+@use '@angular/material' as mat;
+
+// Paleta primaria (gris)
+$primary-palette: mat.m2-define-palette((
+  500: #4A4A4A,
+  600: #434343,
+  700: #3b3b3b,
+  800: #323232,
+  contrast: (
+    500: #F8F1E9, // blanco para texto sobre gris
+    600: #F8F1E9,
+    700: #F8F1E9,
+    800: #F8F1E9,
+  )
+));
+
+// Paleta acento (rojo coral)
+$accent-palette: mat.m2-define-palette((
+  500: #FF6F61,
+  600: #e65f53,
+  700: #cc5248,
+  800: #b2453d,
+  contrast: (
+    500: #F8F1E9,
+    600: #F8F1E9,
+    700: #F8F1E9,
+    800: #F8F1E9,
+  )
+));
+
+// Paleta secundaria (azul)
+$secondary-palette: mat.m2-define-palette((
+  500: #A3BFFA,
+  600: #7fa7f8,
+  700: #5b8ff6,
+  800: #3777f4,
+  contrast: (
+    500: #4A4A4A,
+    600: #4A4A4A,
+    700: #F8F1E9,
+    800: #F8F1E9,
+  )
+));
+
+// Paleta warn (puedes personalizarla si quieres)
+$warn-palette: mat.m2-define-palette(mat.$m2-red-palette);
+
+// Crea el tema claro personalizado
+$my-app-theme: mat.m2-light-theme((
+  color: (
+    primary: $primary-palette,
+    accent: $accent-palette,
+    secondary: $secondary-palette,
+    warn: $warn-palette,
+  ),
+));
+
+// Aplica el tema a todos los componentes
+@include mat.m2-all-component-themes($my-app-theme);
