@@ -1,0 +1,22 @@
+<div class="menu-bar" @fadeIn>
+  <div class="menu-left">
+    <div class="titulo">{{ titulo }}</div>
+    <div class="subtitulo">{{ subtitulo }}</div>
+  </div>
+
+  <div class="menu-right">
+    <mat-form-field appearance="outline">
+      <mat-label>Turno</mat-label>
+      <mat-select [(ngModel)]="turno">
+        <mat-option *ngFor="let t of turnos" [value]="t.value">{{ t.viewValue }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Fecha</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="fecha" />
+      <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+</div>
