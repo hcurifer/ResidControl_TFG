@@ -12,11 +12,5 @@ import { ProgressCircleComponent } from '../../../components/ProgressCircle/prog
   styleUrl: './page-dashboard.component.scss'
 })
 export class PageDashboardComponent {
- usoCpu = 15;
-  usoMemoria = 80;
-  indicadores = [
-    { label: 'Batería', current: 70, max: 100 },
-    { label: 'Temperatura', current: 45, max: 100 },
-    { label: 'Red', current: 90, max: 100 },
-  ];
+ 
 }
