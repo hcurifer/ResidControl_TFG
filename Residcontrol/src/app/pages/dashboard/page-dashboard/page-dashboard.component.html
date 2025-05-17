@@ -8,3 +8,25 @@
 <div>
     <app-menu>    </app-menu>
 </div>
+<!-- Indicador para uso de CPU -->
+<app-progreso
+  [label]="'Uso CPU'"
+  [current]="usoCpu"
+  [max]="100"
+  [size]="120">
+</app-progreso>
+
+<!-- Indicador para uso de Memoria -->
+<app-progreso
+  [label]="'Uso Memoria'"
+  [current]="usoMemoria"
+  [max]="100"
+  [size]="120">
+</app-progreso>
+<app-progreso
+  *ngFor="let i of indicadores"
+  [label]="i.label"
+  [current]="i.current"
+  [max]="i.max"
+  [size]="100">
+</app-progreso>
