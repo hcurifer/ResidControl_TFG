@@ -1,0 +1,34 @@
+<div class="progress-circle-wrapper" [style.width.px]="size">
+  <div class="tooltip">{{ label }}</div>
+
+  <div class="progress-circle-container" [style.width.px]="size" [style.height.px]="size">
+    <svg [attr.width]="size" [attr.height]="size">
+      <circle
+        class="circle-bg"
+        [attr.cx]="size / 2"
+        [attr.cy]="size / 2"
+        [attr.r]="radius"
+        [attr.stroke-width]="stroke"
+      ></circle>
+
+      <circle
+        class="circle-fg"
+        [attr.cx]="size / 2"
+        [attr.cy]="size / 2"
+        [attr.r]="radius"
+        [attr.stroke-width]="stroke"
+        [attr.stroke-dasharray]="circumference"
+        [attr.stroke-dashoffset]="dashOffset"
+        [attr.stroke]="color()"
+      ></circle>
+    </svg>
+
+    <div class="percentage-center" [style.color]="color()">
+      {{ percentage() | number: '1.0-0' }}%
+    </div>
+  </div>
+
+  <div class="percentage-label" [style.color]="color()">
+    {{ percentage() | number: '1.0-0' }}%
+  </div>
+</div>
