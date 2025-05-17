@@ -1,0 +1,57 @@
+.contenedor-alertas {
+  background-color: #444;
+  padding: 1rem;
+  border-radius: 12px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cabecera {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.titulo {
+  background: white;
+  color: black;
+  padding: 0.2rem 0.5rem;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+.icono-alerta {
+  font-size: 32px;
+}
+
+.pulse {
+  animation: pulso 1.5s infinite;
+}
+
+@keyframes pulso {
+  0% {
+    color: red;
+    transform: scale(1);
+  }
+  50% {
+    color: black;
+    transform: scale(1.2);
+  }
+  100% {
+    color: red;
+    transform: scale(1);
+  }
+}
+
+.lista-alertas {
+  background: #eee;
+  color: black;
+  border-radius: 12px;
+  padding: 0.5rem;
+  display: grid;
+  grid-template-columns: 1fr auto auto auto;
+  align-items: center;
+  gap: 1rem;
+}
