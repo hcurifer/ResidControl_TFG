@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MenuComponent } from '../../../components/menu/menu.component';
 import { ProgressCircleComponent } from '../../../components/ProgressCircle/progreso/progreso.component';
 import { MatCardModule } from '@angular/material/card';
-//import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-page-progreso',
