@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { trigger, state, style, animate, transition } from '@angular/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -30,8 +30,9 @@ import { CommonModule } from '@angular/common';
   ]
 })
 export class MenuComponent {
-  titulo = 'Lista de tareas';
-  subtitulo = 'TO-DO';
+  @Input() titulo: string = '';
+  @Input() subtitulo: string = '';
+
   turno = 'mañana';
   fecha = new Date();
 
@@ -40,4 +41,5 @@ export class MenuComponent {
     { value: 'tarde', viewValue: 'tarde' },
     { value: 'noche', viewValue: 'noche' }
   ];
+
 }

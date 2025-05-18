@@ -9,9 +9,9 @@
   <div class="section">
     <div class="section-header">Personal Activo</div>
     <div class="progress-row">
-      <app-progreso [label]="'Mañana'" [value]="5"></app-progreso>
-      <app-progreso [label]="'Tarde'" [value]="3"></app-progreso>
-      <app-progreso [label]="'Noche'" [value]="2"></app-progreso>
+      <app-progreso [label]="'Mañana'" [current]="5"></app-progreso>
+      <app-progreso [label]="'Tarde'" [current]="3"></app-progreso>
+      <app-progreso [label]="'Noche'" [current]="2"></app-progreso>
     </div>
   </div>
 
@@ -19,9 +19,9 @@
   <div class="section">
     <div class="section-header">Residentes Activos</div>
     <div class="progress-row">
-      <app-progreso [label]="'Mañana'" [value]="12"></app-progreso>
-      <app-progreso [label]="'Tarde'" [value]="10"></app-progreso>
-      <app-progreso [label]="'Noche'" [value]="8"></app-progreso>
+      <app-progreso [label]="'Mañana'" [current]="12"></app-progreso>
+      <app-progreso [label]="'Tarde'" [current]="10"></app-progreso>
+      <app-progreso [label]="'Noche'" [current]="8"></app-progreso>
     </div>
   </div>
 
@@ -34,7 +34,7 @@
         <div class="descripcion">Ocupación estimada</div>
         <div class="porcentaje">{{ cargaPorcentaje }}%</div>
       </div>
-      <app-progreso [label]="'Carga'" [value]="cargaPorcentaje"></app-progreso>
+      <app-progreso [label]="'Carga'" [current]="cargaPorcentaje"></app-progreso>
     </mat-card>
   </div>
 </div>
