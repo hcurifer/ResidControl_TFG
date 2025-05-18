@@ -1,0 +1,15 @@
+<div class="contenedor-alertas">
+  <div class="cabecera">
+    <span class="titulo">Alarmas / Urgencias</span>
+    <mat-icon class="icono-alerta pulse">priority_high</mat-icon>
+  </div>
+
+  <div class="lista-alertas" *ngFor="let alerta of alertas">
+    <mat-checkbox (change)="marcarComoHecha(alerta.id)">
+      {{ alerta.descripcion }}
+    </mat-checkbox>
+    <span class="tiempo">{{ alerta.tiempo }}</span>
+    <span class="residente">{{ alerta.residente }}</span>
+    <span class="enfermero">{{ alerta.enfermero }}</span>
+  </div>
+</div>
