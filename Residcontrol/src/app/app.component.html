@@ -7,13 +7,15 @@
 <!-- * * * * * * * to get started with your project! * * * * * * * -->
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
+<!--Contenido que esta fuera de lo que hace scroll-->
+<app-navbar></app-navbar>
+<app-sidebar></app-sidebar>
 
-
-<main class="main">
-  <div class="content">
-    
-  </div>
+<!--Contenido que si hace scroll si ocupa mas que la pantalla-->
+<main class="main-content">
+  <router-outlet></router-outlet>
 </main>
+
 
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 <!-- * * * * * * * * * * * The content above * * * * * * * * * * * * -->
@@ -24,4 +26,4 @@
 <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
 
 
-<router-outlet />
+
