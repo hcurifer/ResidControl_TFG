@@ -1,65 +1,44 @@
-    .navbar {
-      display: flex;
-      align-items: center;
-      position: fixed;
-      top: 0;
-      width: 100vw;
-      z-index: 1000;
-      height: 64px;
-      padding: 0 1rem;
-      background-color: #444;
-    }
-    .navbar-logos {
-      display: flex;
-      align-items: center;
-    }
-    .logo {
-      height: 40px;
-      margin-right: 8px;
-    }
-    .navbar-texts {
-      display: flex;
-      flex-direction: column;
-      margin-left: 16px;
-    }
-    .navbar-text.upper {
-      font-size: 1.1rem;
-      font-weight: 600;
-    }
-    .navbar-text.lower {
-      font-size: 0.95rem;
-      color: #e0e0e0;
-    }
-    .spacer {
-      flex: 1 1 auto;
-    }
-    .login-btn {
-      min-width: 100px;
-      margin-left: 16px;
-    }
-    .mobile-lower-text {
-      display: none;
-    }
-    @media (max-width: 600px) {
-      .navbar {
-        flex-wrap: wrap;
-        height: auto;
-        padding-bottom: 0.5rem;
-      }
-      .navbar-texts {
-        display: none;
-      }
-      .login-btn {
-        order: 2;
-      }
-      .mobile-lower-text {
-        display: block;
-        width: 100%;
-        text-align: right;
-        font-size: 1rem;
-        color: #e0e0e0;
-        margin-top: 6px;
-        margin-bottom: 4px;
-        order: 3;
-      }
-    }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  height: 64px;
+  background-color: #333;
+  color: white;
+}
+
+.navbar-logos {
+  display: flex;
+  gap: 16px;
+
+  img.logo {
+    height: 48px;
+    width: auto;
+  }
+}
+
+.navbar-texts {
+  display: flex;
+  flex-direction: column;
+  margin-left: 24px;
+
+  .navbar-text.upper {
+    font-weight: bold;
+    font-size: 16px;
+  }
+
+  .navbar-text.lower {
+    font-size: 14px;
+    opacity: 0.8;
+  }
+}
+
+.spacer {
+  flex: 1;
+}
+
+button[mat-icon-button] mat-icon {
+  font-size: 28px;
+  color: white;
+}
