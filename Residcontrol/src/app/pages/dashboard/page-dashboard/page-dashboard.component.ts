@@ -6,6 +6,7 @@ import { MenuComponent } from "../../../components/menu/menu.component";
 
 @Component({
   selector: 'app-page-dashboard',
+  standalone: true,
   imports: [CommonModule,NavbarComponent, SidebarComponent, MenuComponent],
   templateUrl: './page-dashboard.component.html',
   styleUrl: './page-dashboard.component.scss'

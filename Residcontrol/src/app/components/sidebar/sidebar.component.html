@@ -7,53 +7,67 @@
     class="sidenav"
   >
     <div class="sidenav-content">
-        <mat-nav-list class="sidenav-list">
-            <button
-                mat-icon-button
-                class="sidebar-btn"
-                routerLink="/dashboard"
-                routerLinkActive="active"
-                aria-label="Dashboard"
-            >
-                <mat-icon>home</mat-icon>
-            </button>
-            <button
-                mat-icon-button
-                class="sidebar-btn"
-                routerLink="/tareas"
-                routerLinkActive="active"
-                aria-label="Tareas"
-            >
-                <mat-icon>task_alt</mat-icon>
-            </button>
-            <button
-                mat-icon-button
-                class="sidebar-btn"
-                routerLink="/progreso"
-                routerLinkActive="active"
-                aria-label="Progreso"
-            >
-                <mat-icon>assignment_add</mat-icon>
-            </button>
-            <button
-                mat-icon-button
-                class="sidebar-btn"
-                routerLink="/feedback"
-                routerLinkActive="active"
-                aria-label="Feedback"
-            >
-                <mat-icon>email</mat-icon>
-            </button>
-            <button
-                mat-icon-button
-                class="sidebar-btn"
-                routerLink="/alertas"
-                routerLinkActive="active"
-                aria-label="Alertas"
-            >
-                <mat-icon>feedback</mat-icon>
-            </button>
-        </mat-nav-list>
+      <mat-nav-list class="sidenav-list">
+        <a
+          mat-icon-button
+          class="sidebar-btn"
+          routerLink="/dashboard"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          aria-label="Dashboard"
+          (click)="onNavigate(sidenav)"
+        >
+          <mat-icon>home</mat-icon>
+        </a>
+
+        <a
+          mat-icon-button
+          class="sidebar-btn"
+          routerLink="/tareas"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          aria-label="Tareas"
+          (click)="onNavigate(sidenav)"
+        >
+          <mat-icon>task_alt</mat-icon>
+        </a>
+
+        <a
+          mat-icon-button
+          class="sidebar-btn"
+          routerLink="/progreso"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          aria-label="Progreso"
+          (click)="onNavigate(sidenav)"
+        >
+          <mat-icon>assignment_add</mat-icon>
+        </a>
+
+        <a
+          mat-icon-button
+          class="sidebar-btn"
+          routerLink="/feedback"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          aria-label="Feedback"
+          (click)="onNavigate(sidenav)"
+        >
+          <mat-icon>email</mat-icon>
+        </a>
+
+        <a
+          mat-icon-button
+          class="sidebar-btn"
+          routerLink="/alarmas"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          aria-label="Alarmas"
+          (click)="onNavigate(sidenav)"
+        >
+          <mat-icon>feedback</mat-icon>
+        </a>
+      </mat-nav-list>
     </div>
   </mat-sidenav>
 

@@ -1,14 +1,16 @@
 import { Component, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
+
 @Component({
   selector: 'app-sidebar',
   standalone: true,
-  imports: [CommonModule, MatSidenavModule, MatListModule, MatIconModule, MatButtonModule],
+  imports: [CommonModule, RouterModule, MatSidenavModule, MatListModule, MatIconModule, MatButtonModule],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss'    
 })
@@ -29,5 +31,11 @@ export class SidebarComponent {
   openSidenav(sidenav: any) {
     this.sidenavOpened = true;
     sidenav.open();
+  }
+   onNavigate(sidenav: any) {
+    if (this.isMobile) {
+      sidenav.close();
+      this.sidenavOpened = false;
+    }
   }
 }
