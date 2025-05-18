@@ -1,0 +1,59 @@
+.progreso-container {
+  padding: 16px;
+  background-color: #e0ecff;
+  color: #333;
+}
+
+.section {
+  background-color: #3d3d3d;
+  color: white;
+  padding: 16px;
+  margin-bottom: 24px;
+  border-radius: 12px;
+}
+
+.section-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+.progress-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.workload-section .workload-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f4f4f4;
+  color: #333;
+  border-radius: 12px;
+  padding: 16px;
+  margin-top: 12px;
+}
+
+.workload-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.nombre {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.descripcion {
+  font-size: 14px;
+  color: #666;
+}
+
+.porcentaje {
+  font-size: 20px;
+  font-weight: bold;
+  color: #fb7a02;
+}
