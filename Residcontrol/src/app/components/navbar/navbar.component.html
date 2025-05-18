@@ -1,17 +1,18 @@
-    <mat-toolbar class="navbar">
-      <div class="navbar-logos">
-        <img src="assets/img/ResidControl.png" alt="Logo Aplicacion" class="logo" />
-        <img src="assets/img/ResidenciaAbrazos.png" alt="Logo Residencia" class="logo" />
-      </div>
-      <div class="navbar-texts">
-        <span class="navbar-text upper">Lorem Ipsum Superior</span>
-        <span class="navbar-text lower">Lorem Ipsum Inferior</span>
-      </div>
-      <span class="spacer"></span>
-      <button mat-raised-button color="accent" class="login-btn">
-        Login
-      </button>
-      <div class="mobile-lower-text">
-        Lorem Ipsum Inferior
-      </div>
-    </mat-toolbar>
+<mat-toolbar class="navbar">
+  <div class="navbar-logos">
+    <img src="assets/img/ResidControl.png" alt="Logo Aplicación" class="logo" />
+    <img src="assets/img/ResidenciaAbrazos.png" alt="Logo Residencia" class="logo" />
+  </div>
+
+  <div class="navbar-texts">
+    <span class="navbar-text upper">Bienvenido a ResidControl</span>
+    <span class="navbar-text lower">{{ userFullName }}</span>
+  </div>
+
+  <span class="spacer"></span>
+
+  <button mat-icon-button (click)="handleLoginLogout()" attr.aria-label="{{ isLoggedIn ? 'Logout' : 'Login' }}">
+    <mat-icon>{{ isLoggedIn ? 'logout' : 'login' }}</mat-icon>
+  </button>
+
+</mat-toolbar>
