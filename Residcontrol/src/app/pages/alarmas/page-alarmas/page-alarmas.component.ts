@@ -7,6 +7,7 @@ import { AlertasComponent } from '../../../components/alertas/alerta/alerta.comp
 
 @Component({
   selector: 'app-page-alarmas',
+  standalone: true,
   imports: [
     AlertasComponent
   ],

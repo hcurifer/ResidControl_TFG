@@ -1,1 +1,86 @@
-<p>sidebar works!</p>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav
+    #sidenav
+    [mode]="isMobile ? 'over' : 'side'"
+    [opened]="!isMobile || sidenavOpened"
+    (closedStart)="sidenavOpened = false"
+    class="sidenav"
+  >
+    <div class="sidenav-content">
+      <mat-nav-list class="sidenav-list">
+        <a
+          mat-icon-button
+          class="sidebar-btn"
+          routerLink="/dashboard"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          aria-label="Dashboard"
+          (click)="onNavigate(sidenav)"
+        >
+          <mat-icon>home</mat-icon>
+        </a>
+
+        <a
+          mat-icon-button
+          class="sidebar-btn"
+          routerLink="/tareas"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          aria-label="Tareas"
+          (click)="onNavigate(sidenav)"
+        >
+          <mat-icon>task_alt</mat-icon>
+        </a>
+
+        <a
+          mat-icon-button
+          class="sidebar-btn"
+          routerLink="/progreso"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          aria-label="Progreso"
+          (click)="onNavigate(sidenav)"
+        >
+          <mat-icon>assignment_add</mat-icon>
+        </a>
+
+        <a
+          mat-icon-button
+          class="sidebar-btn"
+          routerLink="/feedback"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          aria-label="Feedback"
+          (click)="onNavigate(sidenav)"
+        >
+          <mat-icon>email</mat-icon>
+        </a>
+
+        <a
+          mat-icon-button
+          class="sidebar-btn"
+          routerLink="/alarmas"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          aria-label="Alarmas"
+          (click)="onNavigate(sidenav)"
+        >
+          <mat-icon>feedback</mat-icon>
+        </a>
+      </mat-nav-list>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <button
+      mat-icon-button
+      class="menu-btn"
+      *ngIf="isMobile"
+      (click)="openSidenav(sidenav)"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>
