@@ -1,0 +1,62 @@
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 128px;
+  //height: 100vh;
+  //background-color: #e0ecff; // fondo claro azulado
+}
+
+.login-card {
+  padding: 32px;
+  border-radius: 16px;
+  background-color: #4a4a4a; 
+  color: #F8F1E9;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+
+  h2 {
+    text-align: center;
+    margin-bottom: 24px;
+    font-size: 24px;
+  }
+
+  .field-label {
+    margin: 12px 0 4px;
+    font-size: 14px;
+  }
+
+  .full-width {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  button {
+    background-color: #fb7a02;
+    color: black;
+
+    &:hover {
+      background-color: #e06d00;
+    }
+  }
+}
+
+::ng-deep .mat-form-field-infix {
+  color: white;
+}
+
+::ng-deep input.mat-input-element {
+  color: white;
+  caret-color: white; // color del cursor
+}
+
+::ng-deep .mat-form-field-label {
+  color: rgba(255, 255, 255, 0.6); // color del label
+}
+
+::ng-deep .mat-form-field-outline {
+  color: white;
+  border-color: white;
+}

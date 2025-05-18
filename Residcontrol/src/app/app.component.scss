@@ -1,0 +1,10 @@
+.main-content {
+  margin-left: 80px; // espacio para sidebar en desktop
+  padding: 16px;
+}
+
+@media (max-width: 600px) {
+  .main-content {
+    margin-left: 0; // espacio para sidebar en movil
+  }
+}
