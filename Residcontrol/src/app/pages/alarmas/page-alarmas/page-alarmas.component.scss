@@ -1,0 +1,44 @@
+.alarmas-container {
+  padding: 16px;
+  background-color: #a4c5f9;
+}
+
+.alertas-lista {
+  margin-top: 24px;
+  margin-bottom: 32px;
+}
+
+.alertas-panel {
+  background-color: #3d3d3d;
+  color: white;
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+
+  .total {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 16px;
+  }
+
+  .botones {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 16px;
+
+    button {
+      min-width: 160px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .botones {
+    flex-direction: column;
+    align-items: center;
+    button {
+      width: 100%;
+    }
+  }
+}
