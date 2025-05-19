@@ -1,5 +1,22 @@
-<div>
+<div class="alarmas-container">
+  <!-- Menú superior -->
+  <app-menu
+    [titulo]="'Panel de Alarmas'"
+    [subtitulo]="'Gestión de alertas diarias'"
+  ></app-menu>
+
+  <!-- Lista de alertas -->
+  <div class="alertas-lista">
     <app-alerta></app-alerta>
+  </div>
+
+  <!-- Panel de acciones -->
+  <div class="alertas-panel">
+    <div class="total">Total de alarmas del día: {{ totalAlertas }}</div>
+    <div class="botones">
+      <button mat-raised-button color="primary">Alarma nueva</button>
+      <button mat-raised-button color="accent">Enviar reporte</button>
+      <button mat-raised-button color="warn">Enviar notificación</button>
+    </div>
+  </div>
 </div>
-<div></div>
-<div></div>
