@@ -13,5 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './page-feedback.component.scss'
 })
 export class PageFeedbackComponent {
-  
+  tareasPendientes = [30, 50, 70]; // Mañana, Tarde, Noche
+  tareasCompletadas = [60, 40, 20];
+  cargaTrabajo = 65;
 }
