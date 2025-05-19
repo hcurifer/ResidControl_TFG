@@ -1,0 +1,13 @@
+.tareas-container {
+  padding: 16px;
+  background-color: #a4c5f9;
+  color: #333;
+}
+
+.tareas-grid {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin-top: 24px;
+}

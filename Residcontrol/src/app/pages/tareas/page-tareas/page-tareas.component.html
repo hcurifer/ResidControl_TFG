@@ -1,1 +1,11 @@
-<p>page-tareas works!</p>
+<div class="tareas-container">
+  <app-menu
+    [titulo]="'Lista de tareas'"
+    [subtitulo]="'TO-DO'"
+  ></app-menu>
+
+  <div class="tareas-grid">
+    <app-tareas-pendientes [tareas]="tareasPendientes"></app-tareas-pendientes>
+    <app-tareas-completadas [tareas]="tareasCompletadas"></app-tareas-completadas>
+  </div>
+</div>
