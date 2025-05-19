@@ -1,0 +1,9 @@
+<div class="card">
+  <h3>PENDIENTES</h3>
+  <ul>
+    <li *ngFor="let tarea of tareas">
+      <mat-checkbox disabled>{{ tarea.descripcion }}</mat-checkbox>
+      <span class="horas">{{ tarea.horas }}h</span>
+    </li>
+  </ul>
+</div>
