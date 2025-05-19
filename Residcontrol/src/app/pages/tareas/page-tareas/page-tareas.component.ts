@@ -12,5 +12,16 @@ import { TareasCompletadasComponent } from '../../../components/tareas-completad
   styleUrl: './page-tareas.component.scss'
 })
 export class PageTareasComponent {
- 
+  tareasPendientes = [
+    { descripcion: 'Realizar cama residentes', horas: 4 },
+    { descripcion: 'Preparar medicina comida', horas: 2 },
+    { descripcion: 'Preparar bandejas comida', horas: 2 },
+    { descripcion: 'Preparar bandejas comida', horas: 2 }
+  ];
+
+  tareasCompletadas = [
+    { descripcion: 'Levantar a residentes', horas: 3 },
+    { descripcion: 'Recibir urgencia turno noche', horas: 2 },
+    { descripcion: 'Duchar residentes dependientes', horas: 2 }
+  ];
 }
