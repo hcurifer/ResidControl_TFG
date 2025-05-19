@@ -1,1 +1,40 @@
-<p>page-feedback works!</p>
+<div class="feedback-container">
+  <!-- Menú superior -->
+  <app-menu
+    [titulo]="'Lista de Personal'"
+    [subtitulo]="'Carga de trabajo'"
+  ></app-menu>
+
+  <!-- Tareas Pendientes -->
+  <div class="section">
+    <div class="section-header">Tareas pendientes</div>
+    <div class="progress-row">
+      <app-progreso [label]="'Mañana'" [current]="tareasPendientes[0]"></app-progreso>
+      <app-progreso [label]="'Tarde'" [current]="tareasPendientes[1]"></app-progreso>
+      <app-progreso [label]="'Noche'" [current]="tareasPendientes[2]"></app-progreso>
+    </div>
+  </div>
+
+  <!-- Tareas Completadas -->
+  <div class="section">
+    <div class="section-header">Tareas Completadas</div>
+    <div class="progress-row">
+      <app-progreso [label]="'Mañana'" [current]="tareasCompletadas[0]"></app-progreso>
+      <app-progreso [label]="'Tarde'" [current]="tareasCompletadas[1]"></app-progreso>
+      <app-progreso [label]="'Noche'" [current]="tareasCompletadas[2]"></app-progreso>
+    </div>
+  </div>
+
+  <!-- Carga de Trabajo y Botones -->
+  <div class="section">
+    <div class="section-header">Carga de trabajo</div>
+    <div class="carga-row">
+      <div class="button-group">
+        <button mat-raised-button color="primary">Enviar taras turno</button>
+        <button mat-raised-button color="primary">Enviar Peticion Día</button>
+        <button mat-raised-button color="primary">Enviar del día</button>
+      </div>
+        <app-progreso [label]="'Total Día'" [current]="cargaTrabajo"></app-progreso>
+    </div>
+  </div>
+</div>
