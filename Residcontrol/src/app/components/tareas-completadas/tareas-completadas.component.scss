@@ -24,10 +24,18 @@ li {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
+  color: #aaa; 
+  text-decoration: line-through; 
 }
 
 .horas {
-  font-weight: bold;
+  //font-weight: bold;
   margin-left: 24px; 
   flex-shrink: 0; 
+  color: #aaa; 
+}
+
+.descripcion {
+  color: #aaa;
+  text-decoration: line-through;
 }
