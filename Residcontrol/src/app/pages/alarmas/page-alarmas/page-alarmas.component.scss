@@ -4,8 +4,7 @@
 }
 
 .alertas-lista {
-  margin-top: 24px;
-  margin-bottom: 32px;
+  margin: 24px 0;
 }
 
 .alertas-panel {
@@ -13,32 +12,56 @@
   color: white;
   border-radius: 16px;
   padding: 24px;
-  text-align: center;
 
-  .total {
-    font-size: 18px;
+  .titulo {
+    font-size: 16px;
     font-weight: bold;
-    margin-bottom: 16px;
+    margin-bottom: 24px;
+    color: black;
+    background-color:#fef9f4;
+    padding: 0.2rem 0.5rem;
+    border-radius: 8px;
+    max-width: 280px;
   }
 
-  .botones {
+  .contenido-panel {
     display: flex;
-    justify-content: center;
+    align-items: center;
+    gap: 32px;
     flex-wrap: wrap;
-    gap: 16px;
+    justify-content: center;
+  }
 
-    button {
-      min-width: 160px;
+  .info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+
+    .total, .completadas {
+      font-size: 16px;
+    }
+
+    .botones {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+
+      button {
+        min-width: 150px;
+      }
     }
   }
 }
 
 @media (max-width: 768px) {
-  .botones {
+  .contenido-panel {
     flex-direction: column;
     align-items: center;
-    button {
-      width: 100%;
-    }
+  }
+
+  .info {
+    align-items: center;
+    text-align: center;
   }
 }
