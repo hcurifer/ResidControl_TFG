@@ -4,19 +4,29 @@
     [titulo]="'Panel de Alarmas'"
     [subtitulo]="'Gestión de alertas diarias'"
   ></app-menu>
+<br>
+  <!-- Panel de acciones -->
+  <div class="alertas-panel">
+    <div class="titulo">Panel de Control / Alarmas - Urgencias</div>
 
-  <!-- Lista de alertas -->
+    <div class="contenido-panel">
+      <app-progreso [label]="'Completadas'" [current]="porcentaje"></app-progreso>
+
+      <div class="info">
+        <div class="total">Total del día: {{ totalAlertas }}</div>
+        <div class="completadas">Resueltas: {{ completadas }}</div>
+
+        <div class="botones">
+          <button mat-raised-button color="primary">Alarma nueva</button>
+          <button mat-raised-button color="accent">Enviar reporte</button>
+          <button mat-raised-button color="warn">Enviar notificación</button>
+        </div>
+      </div>
+    </div>
+  </div>
+ <!-- Lista de alertas -->
   <div class="alertas-lista">
     <app-alerta></app-alerta>
   </div>
 
-  <!-- Panel de acciones -->
-  <div class="alertas-panel">
-    <div class="total">Total de alarmas del día: {{ totalAlertas }}</div>
-    <div class="botones">
-      <button mat-raised-button color="primary">Alarma nueva</button>
-      <button mat-raised-button color="accent">Enviar reporte</button>
-      <button mat-raised-button color="warn">Enviar notificación</button>
-    </div>
-  </div>
 </div>
