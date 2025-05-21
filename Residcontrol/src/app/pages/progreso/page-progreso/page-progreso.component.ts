@@ -26,4 +26,10 @@ export class PageProgresoComponent {
     const jornadaTotal = 8 - 0.5;
     this.cargaPorcentaje = Math.round((horasAsignadas / jornadaTotal) * 100);
   }
+  getCargaColor(): string {
+  const p = this.cargaPorcentaje;
+  if (p <= 40) return 'green';
+  if (p <= 70) return '#fb7a02'; // naranja
+  return 'red';
+}
 }

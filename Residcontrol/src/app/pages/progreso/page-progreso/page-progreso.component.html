@@ -1,10 +1,13 @@
-<div class="progreso-container">
-  <!-- Componente menú superior -->
-  <app-menu
-    [titulo]="'Lista de Personal'"
-    [subtitulo]="'Carga de trabajo general por turno'"
-  ></app-menu>
+<!-- Menú superior -->
+<app-menu
+  [titulo]="'Lista de Personal'"
+  [subtitulo]="'Carga de trabajo general por turno'"
+></app-menu>
 
+<br>
+
+<!-- Fila que contiene Personal y Residentes a cada lado -->
+<div class="section-duo">
   <!-- Personal Activo -->
   <div class="section">
     <div class="section-header">Personal Activo</div>
@@ -24,17 +27,24 @@
       <app-progreso [label]="'Noche'" [current]="8"></app-progreso>
     </div>
   </div>
+</div>
 
-  <!-- Carga de trabajo -->
-  <div class="section workload-section">
-    <div class="section-header">Carga de Trabajo</div>
-    <mat-card class="workload-card">
-      <div class="workload-info">
-        <div class="nombre">{{ userFullName }}</div>
-        <div class="descripcion">Ocupación estimada</div>
-        <div class="porcentaje">{{ cargaPorcentaje }}%</div>
+<!-- Carga de trabajo -->
+<div class="section workload-section">
+  <div class="section-header">Carga de Trabajo</div>
+
+  <div class="workload-card">
+    <!-- Panel izquierdo con información -->
+    <div class="workload-info">
+      <div class="titulo"><u>Información del turno</u></div>
+      <div class="linea">Jornada laboral: 8 <i>Horas</i></div>
+      <div class="linea">Descanso: 30 <i>Minutos</i></div>
+      <div class="linea">
+        Ocupación estimada: <strong class="porcentaje" [style.color]="getCargaColor()">{{ cargaPorcentaje }}%</strong>
       </div>
-      <app-progreso [label]="'Carga'" [current]="cargaPorcentaje"></app-progreso>
-    </mat-card>
+    </div>
+
+    <!-- Círculo de progreso a la derecha -->
+    <app-progreso [label]="'Carga'" [current]="cargaPorcentaje"></app-progreso>
   </div>
 </div>
