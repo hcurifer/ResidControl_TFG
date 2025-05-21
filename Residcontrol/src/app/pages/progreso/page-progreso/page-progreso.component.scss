@@ -12,9 +12,15 @@
 }
 
 .section-header {
-  font-size: 18px;
+  background-color: #fef9f4; 
+  color: #000;               
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 12px;
   font-weight: bold;
-  margin-bottom: 12px;
+  font-size: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .progress-row {
