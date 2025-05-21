@@ -2,8 +2,11 @@
   <h3>COMPLETADOS</h3>
   <ul>
     <li *ngFor="let tarea of tareas">
-      <mat-checkbox checked disabled>{{ tarea.descripcion }}</mat-checkbox>
+      <mat-checkbox checked disabled>
+        <span class="descripcion">{{ tarea.descripcion }}</span>
+      </mat-checkbox>
       <span class="horas">{{ tarea.horas }}h</span>
     </li>
+
   </ul>
 </div>
