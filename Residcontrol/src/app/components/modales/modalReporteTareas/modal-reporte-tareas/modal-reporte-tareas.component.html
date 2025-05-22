@@ -1,0 +1,17 @@
+<h2>Enviar Reporte de Tareas</h2>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Selecciona el turno</mat-label>
+  <mat-select [(ngModel)]="turnoSeleccionado">
+    <mat-option value="mañana">Mañana</mat-option>
+    <mat-option value="tarde">Tarde</mat-option>
+    <mat-option value="noche">Noche</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div class="button-group">
+  <button mat-raised-button color="primary" (click)="enviarReporte()" [disabled]="!turnoSeleccionado">
+    Enviar
+  </button>
+  <button mat-button (click)="cancelar()">Cancelar</button>
+</div>
