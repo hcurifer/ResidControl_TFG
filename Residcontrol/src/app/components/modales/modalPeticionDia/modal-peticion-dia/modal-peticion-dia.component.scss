@@ -1,0 +1,29 @@
+:host {
+  display: block;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  max-width: 400px;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 20px;
+  margin-bottom: 16px;
+}
+
+.field {
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.button-group {
+  margin-top: 24px;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}

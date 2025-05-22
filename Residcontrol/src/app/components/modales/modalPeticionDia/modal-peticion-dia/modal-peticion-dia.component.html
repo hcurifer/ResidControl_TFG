@@ -1,0 +1,18 @@
+<h2>Enviar Petición de Día</h2>
+
+<p class="field"><strong>Para:</strong> {{ data.to }}</p>
+<p class="field"><strong>Asunto:</strong> Petición de día</p>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Selecciona un día</mat-label>
+  <input matInput [matDatepicker]="picker" [(ngModel)]="fechaSeleccionada">
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<div class="button-group">
+  <button mat-raised-button color="primary" (click)="enviar()" [disabled]="!fechaSeleccionada">
+    Enviar
+  </button>
+  <button mat-button (click)="cerrar()">Cancelar</button>
+</div>
