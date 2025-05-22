@@ -6,6 +6,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModalPeticionDiaComponent } from '../../../components/modales/modalPeticionDia/modal-peticion-dia/modal-peticion-dia.component';
 import { ModalReporteTareasComponent } from '../../../components/modales/modalReporteTareas/modal-reporte-tareas/modal-reporte-tareas.component';
+import { ModalReporteDiaComponent } from '../../../components/modales/modalReporteDia/modal-reporte-dia/modal-reporte-dia.component';
 
 
 
@@ -46,5 +47,13 @@ export class PageFeedbackComponent {
       width: '420px'
     });
   }
+  abrirModalReporteDia() {
+    this.dialog.open(ModalReporteDiaComponent, {
+      disableClose: false,
+      hasBackdrop: true,
+      width: '440px'
+    });
+  }
+
 
 }
