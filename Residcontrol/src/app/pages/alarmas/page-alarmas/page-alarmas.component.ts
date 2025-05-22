@@ -6,12 +6,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { ProgressCircleComponent } from '../../../components/ProgressCircle/progreso/progreso.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ModalNuevaAlarmaComponent } from '../../../components/modales/modalNuevaAlarma/modal-nueva-alarma/modal-nueva-alarma.component';
+import { ModalReporteAlarmasComponent } from '../../../components/modales/modalReporteAlarmas/modal-reporte-alarmas/modal-reporte-alarmas.component';
+
 
 
 @Component({
   selector: 'app-page-alarmas',
   standalone: true,
-  imports: [CommonModule, MenuComponent, AlertasComponent, MatButtonModule, ProgressCircleComponent, ModalNuevaAlarmaComponent],
+  imports: [CommonModule, MenuComponent, AlertasComponent, MatButtonModule, ProgressCircleComponent, ModalNuevaAlarmaComponent,ModalReporteAlarmasComponent],
   templateUrl: './page-alarmas.component.html',
   styleUrl: './page-alarmas.component.scss'
 })
@@ -27,6 +29,14 @@ export class PageAlarmasComponent {
       disableClose: false,
       hasBackdrop: true,
       width: '460px'
+    });
+  }
+
+  abrirModalReporteAlarmas() {
+    this.dialog.open(ModalReporteAlarmasComponent, {
+      disableClose: false,
+      hasBackdrop: true,
+      width: '440px'
     });
   }
 
