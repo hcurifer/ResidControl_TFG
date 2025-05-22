@@ -39,7 +39,9 @@
 
     <!-- Botones a la derecha -->
     <div class="button-group-horizontal">
-      <button mat-raised-button color="primary">Enviar tareas turno</button>
+      <button mat-raised-button color="primary" (click)="abrirModalReporteTareas()">
+        Enviar reporte
+      </button>
       <button mat-raised-button color="primary" (click)="abrirModalPeticionDia()">
         Enviar Petición Día
       </button>

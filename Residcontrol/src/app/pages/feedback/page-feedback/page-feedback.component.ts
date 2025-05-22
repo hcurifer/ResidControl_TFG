@@ -5,6 +5,9 @@ import { ProgressCircleComponent } from '../../../components/ProgressCircle/prog
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModalPeticionDiaComponent } from '../../../components/modales/modalPeticionDia/modal-peticion-dia/modal-peticion-dia.component';
+import { ModalReporteTareasComponent } from '../../../components/modales/modalReporteTareas/modal-reporte-tareas/modal-reporte-tareas.component';
+
+
 
 @Component({
   selector: 'app-page-feedback',
@@ -36,4 +39,12 @@ export class PageFeedbackComponent {
       width: '420px'
     });
   }
+  abrirModalReporteTareas() {
+    this.dialog.open(ModalReporteTareasComponent, {
+      disableClose: false,
+      hasBackdrop: true,
+      width: '420px'
+    });
+  }
+
 }
