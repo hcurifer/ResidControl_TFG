@@ -1,0 +1,31 @@
+<h2>Nueva Alarma</h2>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Descripción de la alarma</mat-label>
+  <textarea matInput [(ngModel)]="descripcion" rows="3"></textarea>
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Personal responsable</mat-label>
+  <mat-select [(ngModel)]="personalSeleccionado">
+    <mat-option *ngFor="let persona of listaPersonal" [value]="persona">
+      {{ persona }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Residente afectado</mat-label>
+  <mat-select [(ngModel)]="residenteSeleccionado">
+    <mat-option *ngFor="let residente of listaResidentes" [value]="residente">
+      {{ residente }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div class="button-group">
+  <button mat-raised-button color="primary" (click)="crearAlarma()" [disabled]="!descripcion || !personalSeleccionado || !residenteSeleccionado">
+    Crear alarma
+  </button>
+  <button mat-button (click)="cancelar()">Cancelar</button>
+</div>
