@@ -3,15 +3,23 @@
   [subtitulo]="'Información general del usuario y residentes'"
 ></app-menu>
 
-<div class="dashboard-grid">
-  <!-- Tarjeta del usuario -->
-  <app-usuario-card
-    [nombre]="'Carlos'"
-    [apellidos]="'Rodríguez Fernández'"
-    [numeroEmpresas]="3"
-    [imagenUrl]="'assets/img/user-placeholder.png'"
-  ></app-usuario-card>
+<!-- SECCIÓN USUARIO -->
+<div class="section">
+  <div class="section-header">Datos del usuario</div>
+  <div class="section-content">
+    <app-usuario-card
+      [nombre]="'Carlos'"
+      [apellidos]="'Rodríguez Fernández'"
+      [numeroEmpresas]="3"
+      [imagenUrl]="'assets/img/user-placeholder.png'"
+    ></app-usuario-card>
+  </div>
+</div>
 
-  <!-- Tarjeta del residente seleccionable -->
-  <app-residente-card></app-residente-card>
+<!-- SECCIÓN RESIDENTE -->
+<div class="section">
+  <div class="section-header">Residente seleccionado</div>
+  <div class="section-content">
+    <app-residente-card></app-residente-card>
+  </div>
 </div>
