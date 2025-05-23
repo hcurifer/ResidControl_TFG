@@ -1,0 +1,34 @@
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Selecciona un residente</mat-label>
+  <mat-select [(ngModel)]="residenteSeleccionado">
+    <mat-option>
+      <input
+        matInput
+        [(ngModel)]="filtro"
+        placeholder="Buscar..."
+        (click)="$event.stopPropagation()"
+      />
+    </mat-option>
+    <mat-option
+      *ngFor="let r of residentesFiltrados"
+      [value]="r"
+    >
+      {{ r.nombre }} {{ r.apellidos }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-card class="info-card" *ngIf="residenteSeleccionado">
+  <div class="card-header">
+    <img
+      [src]="residenteSeleccionado.imagen"
+      alt="Foto residente"
+      class="profile-img"
+    />
+    <div>
+      <h3>{{ residenteSeleccionado.nombre }}</h3>
+      <p>{{ residenteSeleccionado.apellidos }}</p>
+      <p>Habitación: {{ residenteSeleccionado.habitacion }}</p>
+    </div>
+  </div>
+</mat-card>

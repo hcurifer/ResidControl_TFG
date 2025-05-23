@@ -1,0 +1,22 @@
+.info-card {
+  background-color: #fef9f4;
+  border-radius: 12px;
+  padding: 16px;
+  flex: 1 1 300px;
+  max-width: 480px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.profile-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
