@@ -10,8 +10,11 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './tarjeta-usuario-card.component.scss'
 })
 export class UsuarioCardComponent {
-  @Input() nombre: string = '';
-  @Input() apellidos: string = '';
-  @Input() numeroEmpresas: number = 0;
-  @Input() imagenUrl: string = 'assets/img/user-placeholder.png';
+  @Input() nombre!: string;
+  @Input() apellidos!: string;
+  @Input() numeroEmpresas!: number;
+  @Input() imagenUrl!: string;
+  @Input() rol!: string;
+  @Input() ultimoAcceso!: string;
+  @Input() correo!: string;
 }
