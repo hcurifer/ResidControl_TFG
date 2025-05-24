@@ -1,22 +1,76 @@
-.info-card {
-  background-color: #fef9f4;
-  border-radius: 12px;
-  padding: 16px;
-  flex: 1 1 300px;
-  max-width: 480px;
+.usuario-card-wrapper {
   display: flex;
   flex-direction: column;
+  gap: 12px;
+  color: #000;
 }
 
-.card-header {
+.usuario-header {
   display: flex;
-  gap: 16px;
+  justify-content: space-between;
   align-items: center;
+
+  .titulo {
+    font-weight: bold;
+    font-size: 20px;
+    background-color: #fef9f4;
+    padding: 6px 16px;
+    border-radius: 12px;
+    color: black;
+  }
+
+  .rol {
+    font-weight: bold;
+    font-size: 16px;
+    color: #fb7a02;
+  }
 }
 
-.profile-img {
-  width: 80px;
-  height: 80px;
+.usuario-card {
+  display: flex;
+  background-color: #fefefe;
+  border-radius: 12px;
+  padding: 16px;
+  gap: 24px;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.foto img {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
+  border: 3px solid #000;
   object-fit: cover;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  .nombre, .apellidos {
+    font-weight: bold;
+    font-size: 16px;
+    color: #222;
+  }
+
+  .dato {
+    font-size: 14px;
+    color: #444;
+  }
+}
+
+@media (max-width: 600px) {
+  .usuario-card {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .usuario-header {
+    flex-direction: column;
+    gap: 4px;
+    align-items: flex-start;
+  }
 }

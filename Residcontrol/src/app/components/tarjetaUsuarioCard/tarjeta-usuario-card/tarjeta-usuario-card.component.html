@@ -1,10 +1,20 @@
-<mat-card class="info-card">
-  <div class="card-header">
-    <img [src]="imagenUrl" alt="Foto usuario" class="profile-img" />
-    <div>
-      <h3>{{ nombre }}</h3>
-      <p>{{ apellidos }}</p>
-      <p>Número de empresas: {{ numeroEmpresas }}</p>
+<div class="usuario-card-wrapper">
+  <div class="usuario-header">
+    <span class="titulo">Datos del usuario</span>
+    <span class="rol">{{ rol }}</span>
+  </div>
+
+  <div class="usuario-card">
+    <div class="foto">
+      <img src="imagenUrl" alt="Foto usuario" />
+    </div>
+
+    <div class="info">
+      <div class="nombre">{{ nombre }}</div>
+      <div class="apellidos">{{ apellidos }}</div>
+      <div class="dato">Empresas asignadas: {{ numeroEmpresas }}</div>
+      <div class="dato">Último acceso: {{ ultimoAcceso }}</div>
+      <div class="dato">Correo: {{ correo }}</div>
     </div>
   </div>
-</mat-card>
+</div>

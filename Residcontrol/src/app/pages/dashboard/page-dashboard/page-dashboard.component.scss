@@ -1,23 +1,41 @@
+.dashboard-columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  justify-content: center;
+  padding: 16px;
+}
+
 .section {
   background-color: #3d3d3d;
   padding: 24px;
   border-radius: 12px;
-  margin: 24px;
+  flex: 1 1 400px;
+  max-width: 600px;
   color: white;
 }
 
 .section-header {
   background-color: #fef9f4;
   color: black;
-  padding: 12px 24px;
+  padding: 8px 16px;
   border-radius: 12px;
   font-weight: bold;
-  font-size: 18px;
-  margin-bottom: 16px;
   display: inline-block;
+  margin-bottom: 16px;
+  font-size: 18px;
 }
 
-.section-content {
+.section-header-row {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.residente-select {
+  min-width: 220px;
+  background: white;
+  border-radius: 8px;
 }

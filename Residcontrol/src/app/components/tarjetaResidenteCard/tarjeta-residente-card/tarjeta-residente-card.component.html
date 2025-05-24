@@ -1,34 +1,24 @@
-<mat-form-field appearance="fill" class="full-width">
-  <mat-label>Selecciona un residente</mat-label>
-  <mat-select [(ngModel)]="residenteSeleccionado">
-    <mat-option>
-      <input
-        matInput
-        [(ngModel)]="filtro"
-        placeholder="Buscar..."
-        (click)="$event.stopPropagation()"
-      />
-    </mat-option>
-    <mat-option
-      *ngFor="let r of residentesFiltrados"
-      [value]="r"
-    >
-      {{ r.nombre }} {{ r.apellidos }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+<div class="residente-card-wrapper">
+  <div class="residente-header-row">
+    <span class="residente-header">Datos del residente</span>
 
-<mat-card class="info-card" *ngIf="residenteSeleccionado">
-  <div class="card-header">
-    <img
-      [src]="residenteSeleccionado.imagen"
-      alt="Foto residente"
-      class="profile-img"
-    />
-    <div>
-      <h3>{{ residenteSeleccionado.nombre }}</h3>
-      <p>{{ residenteSeleccionado.apellidos }}</p>
-      <p>Habitación: {{ residenteSeleccionado.habitacion }}</p>
+    <mat-form-field appearance="fill" class="residente-selector">
+      <mat-label>Seleccionar residente</mat-label>
+      <mat-select [value]="residenteSeleccionado" (selectionChange)="cambiarResidente($event.value)">
+        <mat-option *ngFor="let r of residentes" [value]="r">{{ r.nombre }} {{ r.apellidos }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div class="residente-card">
+    <img class="residente-imagen" [src]="residenteSeleccionado.imagen" alt="Foto residente" />
+    <div class="residente-info">
+      <span class="nombre">{{ residenteSeleccionado.nombre }}</span>
+      <span>{{ residenteSeleccionado.apellidos }}</span>
+      <span>Habitación: {{ residenteSeleccionado.habitacion }}</span>
+      <span>Edad: {{ residenteSeleccionado.edad }}</span>
+      <span>Estado: {{ residenteSeleccionado.estado }}</span>
+      <span>Ingreso: {{ residenteSeleccionado.fechaIngreso }}</span>
     </div>
   </div>
-</mat-card>
+</div>
