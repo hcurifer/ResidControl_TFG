@@ -1,0 +1,47 @@
+<h2>Asignar puesto</h2>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Fecha</mat-label>
+  <input matInput [matDatepicker]="picker" [(ngModel)]="fecha" />
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Turno</mat-label>
+  <mat-select [(ngModel)]="turno">
+    <mat-option value="mañana">Mañana</mat-option>
+    <mat-option value="tarde">Tarde</mat-option>
+    <mat-option value="noche">Noche</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Persona</mat-label>
+  <mat-select [(ngModel)]="persona">
+    <mat-option *ngFor="let p of personas" [value]="p">{{ p }}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div *ngFor="let puesto of puestos">
+  <mat-checkbox
+    [checked]="puestosSeleccionados.includes(puesto.nombre)"
+    (change)="togglePuesto(puesto.nombre, $event.checked)"
+    [matTooltip]="formatearTareas(puesto.tareas)"
+    matTooltipPosition="above"
+    matTooltipClass="tooltip-custom"
+  >
+    {{ puesto.nombre }} - {{ puesto.horas }}h
+  </mat-checkbox>
+</div>
+
+<div class="horas-totales">
+  Total asignado: <strong [style.color]="horasTotales > 8 ? 'red' : '#333'">{{ horasTotales }}h</strong>
+</div>
+
+<div class="button-group">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="enviar()" [disabled]="botonDeshabilitado">
+    Asignar
+  </button>
+</div>

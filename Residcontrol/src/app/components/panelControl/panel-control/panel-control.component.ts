@@ -5,6 +5,7 @@ import { ModalCrearUsuarioComponent } from '../../modales/modalCrearUsuario/moda
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModalCrearResidenteComponent } from '../../modales/modalCrearResidente/modal-crear-residente/modal-crear-residente.component';
 import { ModalAsignarTareaComponent } from '../../modales/modalAsignarTareas/modal-asignar-tareas/modal-asignar-tareas.component';
+import { ModalAsignarPuestoComponent } from '../../modales/modalAsignarPuesto/modal-asignar-puesto/modal-asignar-puesto.component';
 
 @Component({
   selector: 'app-panel-control',
@@ -14,7 +15,8 @@ import { ModalAsignarTareaComponent } from '../../modales/modalAsignarTareas/mod
   ModalCrearUsuarioComponent,
   MatDialogModule,
   ModalCrearResidenteComponent,
-  ModalAsignarTareaComponent
+  ModalAsignarTareaComponent,
+  ModalAsignarPuestoComponent
   ],
   templateUrl: './panel-control.component.html',
   styleUrl: './panel-control.component.scss'
@@ -42,6 +44,13 @@ export class PanelControlComponent {
 
   abrirModalAsignarTarea() {
     this.dialog.open(ModalAsignarTareaComponent, {
+      width: '480px',
+      disableClose: false,
+      hasBackdrop: true
+    });
+  }
+  abrirModalAsignarPuesto() {
+    this.dialog.open(ModalAsignarPuestoComponent, {
       width: '480px',
       disableClose: false,
       hasBackdrop: true
