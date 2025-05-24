@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { ModalCrearUsuarioComponent } from '../../modales/modalCrearUsuario/modal-crear-usuario/modal-crear-usuario.component';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { ModalCrearResidenteComponent } from '../../modales/modalCrearResidente/modal-crear-residente/modal-crear-residente.component';
 
 @Component({
   selector: 'app-panel-control',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, ModalCrearUsuarioComponent, MatDialogModule],
+  imports: [CommonModule, MatButtonModule, ModalCrearUsuarioComponent, MatDialogModule, ModalCrearResidenteComponent],
   templateUrl: './panel-control.component.html',
   styleUrl: './panel-control.component.scss'
 })
@@ -23,4 +24,14 @@ export class PanelControlComponent {
       width: '450px'
     });
   }
+
+  abrirModalCrearResidente() {
+    this.dialog.open(ModalCrearResidenteComponent, {
+      width: '400px',
+      disableClose: false,
+      hasBackdrop: true
+    });
+  }
+
+
 }
