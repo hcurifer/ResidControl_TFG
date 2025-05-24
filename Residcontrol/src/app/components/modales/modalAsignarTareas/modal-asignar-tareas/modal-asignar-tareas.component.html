@@ -1,0 +1,41 @@
+<h2>Asignar tareas</h2>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Seleccionar fecha</mat-label>
+  <input matInput [matDatepicker]="picker" [(ngModel)]="fecha" />
+  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+  <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Turno</mat-label>
+  <mat-select [(ngModel)]="turno">
+    <mat-option value="mañana">Mañana</mat-option>
+    <mat-option value="tarde">Tarde</mat-option>
+    <mat-option value="noche">Noche</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Asignar a</mat-label>
+  <mat-select [(ngModel)]="usuarioSeleccionado">
+    <mat-option *ngFor="let user of usuarios" [value]="user">{{ user }}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div *ngFor="let tarea of tareas; let i = index">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Tarea {{ i + 1 }}</mat-label>
+    <input matInput [(ngModel)]="tarea.descripcion" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Horas</mat-label>
+    <input matInput type="number" [(ngModel)]="tarea.horas" />
+  </mat-form-field>
+</div>
+
+<div class="button-group">
+  <button mat-raised-button color="primary" (click)="enviarTareas()">Enviar</button>
+  <button mat-button (click)="cancelar()">Cancelar</button>
+</div>
