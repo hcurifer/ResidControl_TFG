@@ -1,33 +1,33 @@
 <h2>Crear nuevo usuario</h2>
 
-<form (ngSubmit)="crearUsuario()" #form="ngForm">
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Nombre</mat-label>
-    <input matInput [(ngModel)]="nombre" name="nombre" required>
-  </mat-form-field>
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Nombre*</mat-label>
+  <input matInput [(ngModel)]="nombre" required />
+</mat-form-field>
 
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Apellidos</mat-label>
-    <input matInput [(ngModel)]="apellidos" name="apellidos" required>
-  </mat-form-field>
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Apellidos*</mat-label>
+  <input matInput [(ngModel)]="apellidos" required />
+</mat-form-field>
 
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Número de empresa</mat-label>
-    <input matInput type="number" [(ngModel)]="numeroEmpresa" name="numeroEmpresa" required>
-  </mat-form-field>
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Número de empresa*</mat-label>
+  <input matInput type="number" [(ngModel)]="numeroEmpresa" required />
+</mat-form-field>
 
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Email</mat-label>
-    <input matInput type="email" [(ngModel)]="email" name="email" required>
-  </mat-form-field>
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Email*</mat-label>
+  <input matInput type="email" [(ngModel)]="email" required />
+</mat-form-field>
 
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Cargo</mat-label>
-    <input matInput [(ngModel)]="cargo" name="cargo">
-  </mat-form-field>
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Cargo</mat-label>
+  <input matInput [(ngModel)]="cargo" />
+</mat-form-field>
 
-  <div class="actions">
-    <button mat-button (click)="cancelar()">Cancelar</button>
-    <button mat-raised-button color="primary" type="submit">Crear</button>
-  </div>
-</form>
+<div class="button-group">
+  <button mat-button (click)="cancelar()">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="crearUsuario()" [disabled]="!nombre || !apellidos || !numeroEmpresa || !email">
+    Crear
+  </button>
+</div>

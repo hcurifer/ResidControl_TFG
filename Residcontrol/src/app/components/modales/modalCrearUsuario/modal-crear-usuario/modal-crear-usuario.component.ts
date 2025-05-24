@@ -32,25 +32,23 @@ export class ModalCrearUsuarioComponent {
   ) {}
 
   crearUsuario() {
-    const nuevoUsuario = {
-      nombre: this.nombre,
-      apellidos: this.apellidos,
-      numeroEmpresa: this.numeroEmpresa,
-      email: this.email,
-      cargo: this.cargo
-    };
+  console.log('USUARIO NUEVO:', {
+    nombre: this.nombre,
+    apellidos: this.apellidos,
+    numeroEmpresa: this.numeroEmpresa,
+    email: this.email,
+    cargo: this.cargo
+  });
 
-    console.log('Usuario creado:', nuevoUsuario);
+  this.snackBar.open('Usuario creado correctamente', 'Cerrar', {
+    duration: 3000,
+    horizontalPosition: 'center',
+    verticalPosition: 'top'
+  });
 
-    // Mostrar confirmación
-    this.snackBar.open('Usuario creado correctamente', 'Cerrar', {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top'
-    });
+  this.dialogRef.close();
+}
 
-    this.dialogRef.close(nuevoUsuario);
-  }
 
   cancelar() {
     this.dialogRef.close();
