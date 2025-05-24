@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+mat-checkbox {
+  display: block;
+  margin: 8px 0;
+  font-size: 15px;
+}
+
+.horas-totales {
+  margin-top: 16px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.button-group {
+  margin-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.tooltip-custom {
+  white-space: pre-line;
+  font-size: 14px;
+  line-height: 1.4;
+}
