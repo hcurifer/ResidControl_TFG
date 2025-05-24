@@ -6,17 +6,18 @@ import { UsuarioCardComponent } from '../../../components/tarjetaUsuarioCard/tar
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatOptionModule } from '@angular/material/core';
+import { PanelControlComponent } from '../../../components/panelControl/panel-control/panel-control.component';
 
 
 @Component({
   selector: 'app-page-dashboard',
   standalone: true,
-  imports: [CommonModule, MenuComponent, ResidenteCardComponent, UsuarioCardComponent, MatFormFieldModule, MatSelectModule, MatOptionModule],
+  imports: [CommonModule, MenuComponent, ResidenteCardComponent, UsuarioCardComponent, MatFormFieldModule, MatSelectModule, MatOptionModule, PanelControlComponent],
   templateUrl: './page-dashboard.component.html',
   styleUrl: './page-dashboard.component.scss'
 })
 export class PageDashboardComponent {
- 
+ rolUsuario = 'Administrador';
 
 residentes = [
   {
