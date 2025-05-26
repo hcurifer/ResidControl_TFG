@@ -17,7 +17,7 @@
   </div>
 
   <div class="panel-buttons" *ngIf="rolUsuario === 'Administrador'">
-    <button mat-raised-button color="warn">Eliminar empleado</button>
+    <button mat-raised-button color="warn" (click)="abrirModalEliminarEmpleado()">Eliminar empleado</button>
     <button mat-raised-button color="warn">Eliminar residente</button>
   </div>
 
