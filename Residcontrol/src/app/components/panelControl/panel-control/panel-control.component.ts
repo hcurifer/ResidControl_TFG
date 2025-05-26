@@ -9,6 +9,7 @@ import { ModalAsignarPuestoComponent } from '../../modales/modalAsignarPuesto/mo
 import { ModalPeticionDiaComponent } from '../../modales/modalPeticionDia/modal-peticion-dia/modal-peticion-dia.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ModalEliminarEmpleadoComponent } from '../../modales/modalEliminarEmpleado/modal-eliminar-empleado/modal-eliminar-empleado.component';
 
 
 @Component({
@@ -21,7 +22,8 @@ import { Router } from '@angular/router';
   ModalCrearResidenteComponent,
   ModalAsignarTareaComponent,
   ModalAsignarPuestoComponent,
-  ModalPeticionDiaComponent
+  ModalPeticionDiaComponent,
+  ModalEliminarEmpleadoComponent
   ],
   templateUrl: './panel-control.component.html',
   styleUrl: './panel-control.component.scss'
@@ -75,6 +77,13 @@ rolUsuario: string = 'Administrador';
       disableClose: false,
       hasBackdrop: true,
       width: '420px'
+    });
+  }
+  abrirModalEliminarEmpleado() {
+    this.dialog.open(ModalEliminarEmpleadoComponent, {
+      width: '480px',
+      disableClose: false,
+      hasBackdrop: true
     });
   }
   cerrarSesion() {
