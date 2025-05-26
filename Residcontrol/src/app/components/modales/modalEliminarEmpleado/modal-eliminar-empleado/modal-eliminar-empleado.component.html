@@ -1,0 +1,26 @@
+<h2>Eliminar Empleado</h2>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Selecciona un empleado</mat-label>
+  <mat-select [(ngModel)]="empleadoSeleccionado">
+    <mat-option *ngFor="let empleado of empleados" [value]="empleado">
+      {{ empleado.nombre }} {{ empleado.apellidos }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div *ngIf="empleadoSeleccionado" class="empleado-info">
+  <img [src]="empleadoSeleccionado.imagen" alt="Foto empleado" class="foto">
+  <div class="datos">
+    <p><strong>Nombre:</strong> {{ empleadoSeleccionado.nombre }}</p>
+    <p><strong>Apellidos:</strong> {{ empleadoSeleccionado.apellidos }}</p>
+    <p><strong>N.º Empresa:</strong> {{ empleadoSeleccionado.numeroEmpresa }}</p>
+    <p><strong>Rol:</strong> {{ empleadoSeleccionado.rol }}</p>
+    <p><strong>Email:</strong> {{ empleadoSeleccionado.email }}</p>
+  </div>
+</div>
+
+<div class="button-group">
+  <button mat-raised-button color="warn" [disabled]="!empleadoSeleccionado" (click)="eliminar()">Eliminar usuario</button>
+  <button mat-button (click)="cerrar()">Cancelar</button>
+</div>
