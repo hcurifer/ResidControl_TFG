@@ -22,3 +22,14 @@
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.panel-buttons button {
+  min-width: 160px;
+  flex: 1 1 180px; 
+  text-align: center;
+  max-width: 280px;
+}
+
+.panel-buttons + .panel-buttons {
+  margin-top: 24px; 
+}

@@ -1,10 +1,24 @@
-<div *ngIf="visible" class="panel-container">
+<div class="panel-container">
   <div class="panel-header">Panel de control</div>
+
+
   <div class="panel-buttons">
+    <button mat-raised-button color="primary" (click)="cerrarSesion()">Cerrar sesión</button>
+    <button mat-raised-button color="primary">Estado residente</button>
+    <button mat-raised-button color="primary" (click)="abrirModalPeticionDia()">Petición de día</button>
+    <button mat-raised-button color="primary">Revisar notificaciones</button>
+  </div>
+
+  <div *ngIf="rolUsuario === 'Administrador'" class="panel-buttons ">
     <button mat-raised-button color="primary" (click)="abrirModalCrearUsuario()">Crear empleados</button>
     <button mat-raised-button color="primary" (click)="abrirModalCrearResidente()">Crear residente</button>
     <button mat-raised-button color="primary" (click)="abrirModalAsignarPuesto()">Asignar puesto</button>
     <button mat-raised-button color="primary" (click)="abrirModalAsignarTarea()">Asignar tarea especial</button>
-
   </div>
+
+  <div class="panel-buttons" *ngIf="rolUsuario === 'Administrador'">
+    <button mat-raised-button color="warn">Eliminar empleado</button>
+    <button mat-raised-button color="warn">Eliminar residente</button>
+  </div>
+
 </div>

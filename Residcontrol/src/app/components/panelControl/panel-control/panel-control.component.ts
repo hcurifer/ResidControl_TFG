@@ -6,6 +6,10 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModalCrearResidenteComponent } from '../../modales/modalCrearResidente/modal-crear-residente/modal-crear-residente.component';
 import { ModalAsignarTareaComponent } from '../../modales/modalAsignarTareas/modal-asignar-tareas/modal-asignar-tareas.component';
 import { ModalAsignarPuestoComponent } from '../../modales/modalAsignarPuesto/modal-asignar-puesto/modal-asignar-puesto.component';
+import { ModalPeticionDiaComponent } from '../../modales/modalPeticionDia/modal-peticion-dia/modal-peticion-dia.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-panel-control',
@@ -16,15 +20,22 @@ import { ModalAsignarPuestoComponent } from '../../modales/modalAsignarPuesto/mo
   MatDialogModule,
   ModalCrearResidenteComponent,
   ModalAsignarTareaComponent,
-  ModalAsignarPuestoComponent
+  ModalAsignarPuestoComponent,
+  ModalPeticionDiaComponent
   ],
   templateUrl: './panel-control.component.html',
   styleUrl: './panel-control.component.scss'
 })
 export class PanelControlComponent {
   @Input() visible = false;
+rolUsuario: string = 'Administrador';
+  
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private snackBar: MatSnackBar,
+    private router: Router
+  ) {}
 
   abrirModalCrearUsuario() {
     this.dialog.open(ModalCrearUsuarioComponent, {
@@ -56,5 +67,30 @@ export class PanelControlComponent {
       hasBackdrop: true
     });
   }
+  abrirModalPeticionDia() {
+    this.dialog.open(ModalPeticionDiaComponent, {
+      data: {
+        to: 'admin@residencia.com'
+      },
+      disableClose: false,
+      hasBackdrop: true,
+      width: '420px'
+    });
+  }
+  cerrarSesion() {
+  // Aquí puedes añadir lógica para limpiar datos si fuese necesario
+
+  this.snackBar.open('Sesión cerrada correctamente', 'Cerrar', {
+    duration: 3000,
+    horizontalPosition: 'center',
+    verticalPosition: 'top'
+  });
+
+  setTimeout(() => {
+    this.router.navigate(['/login']);
+  }, 1500);
+}
+
+
 
 }
