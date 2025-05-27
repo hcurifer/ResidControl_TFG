@@ -1,17 +1,13 @@
-<h2>Notificaciones recientes</h2>
+<h2 class="titulo">Notificaciones recientes</h2>
 
-<mat-list *ngIf="notificaciones.length > 0">
-  <mat-list-item *ngFor="let notif of notificaciones">
-    <div class="notificacion">
-      <p class="mensaje">{{ notif.texto }}</p>
-      <p class="info">
-        <strong>Creado por:</strong> {{ notif.usuario }}<br />
-        <strong>Alarma:</strong> {{ notif.alarma }}<br />
-        <strong>Fecha:</strong> {{ notif.fecha | date:'short' }}
-      </p>
-    </div>
-  </mat-list-item>
-</mat-list>
+<mat-list-item *ngFor="let notif of notificaciones">
+  <div class="notificacion">
+    <p><strong>Usuario:</strong> {{ notif.usuario }}</p>
+    <p><strong>Alarma:</strong> {{ notif.alarma }}</p>
+    <p><strong>Mensaje:</strong> "{{ notif.texto }}"</p>
+    <p><strong>Fecha:</strong> {{ notif.fecha | date:'short' }}</p>
+  </div>
+</mat-list-item>
 
 <div *ngIf="notificaciones.length === 0">
   <p>No hay notificaciones recientes.</p>

@@ -20,20 +20,21 @@ export class ModalRevisarNotificacionesComponent {
   notificaciones = [
     {
       usuario: 'Carlos Rodríguez',
-      texto: 'No se pudo completar la alarma de caída.',
       alarma: 'Alarma 021',
+      texto: 'No se pudo completar la alarma de caída.',
       fecha: new Date('2025-05-26T15:30:00')
     },
     {
       usuario: 'Lucía Pérez',
-      texto: 'Falta supervisión en sala 2.',
       alarma: 'Alarma 020',
+      texto: 'Falta supervisión en sala 2.',
       fecha: new Date('2025-05-26T14:50:00')
-    },
-    // más simuladas...
+    }
+    // ...
   ]
-    .sort((a, b) => b.fecha.getTime() - a.fecha.getTime()) // Orden descendente
-    .slice(0, 10); // Solo las 10 más nuevas
+    .sort((a, b) => b.fecha.getTime() - a.fecha.getTime())
+    .slice(0, 10);
+
 
   constructor(private dialogRef: MatDialogRef<ModalRevisarNotificacionesComponent>) {}
 
