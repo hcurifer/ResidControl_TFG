@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ModalEliminarEmpleadoComponent } from '../../modales/modalEliminarEmpleado/modal-eliminar-empleado/modal-eliminar-empleado.component';
 import { ModalEliminarResidenteComponent } from '../../modales/modalEliminarResidente/modal-eliminar-residente/modal-eliminar-residente.component';
+import { ModalCambioEstadoResidenteComponent } from '../../modales/modalCambioEstadoResidente/modal-cambio-estado-residente/modal-cambio-estado-residente.component';
 
 
 @Component({
@@ -25,7 +26,8 @@ import { ModalEliminarResidenteComponent } from '../../modales/modalEliminarResi
   ModalAsignarPuestoComponent,
   ModalPeticionDiaComponent,
   ModalEliminarEmpleadoComponent,
-  ModalEliminarResidenteComponent
+  ModalEliminarResidenteComponent,
+  ModalCambioEstadoResidenteComponent
   ],
   templateUrl: './panel-control.component.html',
   styleUrl: './panel-control.component.scss'
@@ -95,6 +97,14 @@ rolUsuario: string = 'Administrador';
       hasBackdrop: true
     });
   }
+  abrirModalCambioEstadoResidente() {
+    this.dialog.open(ModalCambioEstadoResidenteComponent, {
+      width: '480px',
+      disableClose: false,
+      hasBackdrop: true
+    });
+  }
+
 
 
 
