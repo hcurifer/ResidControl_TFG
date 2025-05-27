@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { ModalEliminarEmpleadoComponent } from '../../modales/modalEliminarEmpleado/modal-eliminar-empleado/modal-eliminar-empleado.component';
 import { ModalEliminarResidenteComponent } from '../../modales/modalEliminarResidente/modal-eliminar-residente/modal-eliminar-residente.component';
 import { ModalCambioEstadoResidenteComponent } from '../../modales/modalCambioEstadoResidente/modal-cambio-estado-residente/modal-cambio-estado-residente.component';
+import { ModalRevisarNotificacionesComponent } from '../../modales/modalRevisarNotificaciones/modal-revisar-notificaciones/modal-revisar-notificaciones.component';
 
 
 @Component({
@@ -27,7 +28,8 @@ import { ModalCambioEstadoResidenteComponent } from '../../modales/modalCambioEs
   ModalPeticionDiaComponent,
   ModalEliminarEmpleadoComponent,
   ModalEliminarResidenteComponent,
-  ModalCambioEstadoResidenteComponent
+  ModalCambioEstadoResidenteComponent,
+  ModalRevisarNotificacionesComponent
   ],
   templateUrl: './panel-control.component.html',
   styleUrl: './panel-control.component.scss'
@@ -90,7 +92,7 @@ rolUsuario: string = 'Administrador';
       hasBackdrop: true
     });
   }
-  abrirModalEliminarResidente() {
+    abrirModalEliminarResidente() {
     this.dialog.open(ModalEliminarResidenteComponent, {
       width: '480px',
       disableClose: false,
@@ -104,6 +106,14 @@ rolUsuario: string = 'Administrador';
       hasBackdrop: true
     });
   }
+  abrirModalRevisarNotificaciones() {
+    this.dialog.open(ModalRevisarNotificacionesComponent, {
+      width: '480px',
+      disableClose: false,
+      hasBackdrop: true
+    });
+  }
+
 
 
 
