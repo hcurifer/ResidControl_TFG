@@ -6,7 +6,7 @@
     <button mat-raised-button color="primary" (click)="cerrarSesion()">Cerrar sesión</button>
     <button mat-raised-button color="primary" (click)="abrirModalCambioEstadoResidente()">Estado residente</button>
     <button mat-raised-button color="primary" (click)="abrirModalPeticionDia()">Petición de día</button>
-    <button mat-raised-button color="primary">Revisar notificaciones</button>
+    <button mat-raised-button color="primary" (click)="abrirModalRevisarNotificaciones()">Revisar notificaciones</button>
   </div>
 
   <div *ngIf="rolUsuario === 'Administrador'" class="panel-buttons ">
