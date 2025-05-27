@@ -7,6 +7,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ModalPeticionDiaComponent } from '../../../components/modales/modalPeticionDia/modal-peticion-dia/modal-peticion-dia.component';
 import { ModalReporteTareasComponent } from '../../../components/modales/modalReporteTareas/modal-reporte-tareas/modal-reporte-tareas.component';
 import { ModalReporteDiaComponent } from '../../../components/modales/modalReporteDia/modal-reporte-dia/modal-reporte-dia.component';
+import { ModalRevisarFeedbackComponent } from '../../../components/modales/modalRevisarFeedback/modal-revisar-feedback/modal-revisar-feedback.component';
 
 
 
@@ -18,7 +19,8 @@ import { ModalReporteDiaComponent } from '../../../components/modales/modalRepor
     MenuComponent,
     ProgressCircleComponent,
     MatButtonModule,
-    MatDialogModule, 
+    MatDialogModule,
+    ModalRevisarFeedbackComponent
   ],
   templateUrl: './page-feedback.component.html',
   styleUrl: './page-feedback.component.scss'
@@ -30,14 +32,11 @@ export class PageFeedbackComponent {
 
   constructor(private dialog: MatDialog) {}
 
-  abrirModalPeticionDia() {
-    this.dialog.open(ModalPeticionDiaComponent, {
-      data: {
-        to: 'admin@residencia.com'
-      },
+  abrirModalRevisarFeedback() {
+    this.dialog.open(ModalRevisarFeedbackComponent, {
+      width: '480px',
       disableClose: false,
-      hasBackdrop: true,
-      width: '420px'
+      hasBackdrop: true
     });
   }
   abrirModalReporteTareas() {
