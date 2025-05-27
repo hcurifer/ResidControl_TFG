@@ -13,4 +13,8 @@ export class ApiService {
   getUsuarios(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/usuarios/`);
   }
+  getResidentes(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/residentes/`);
+  }
+
 }
