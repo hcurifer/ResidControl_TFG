@@ -1,0 +1,20 @@
+<h2 class="titulo">Historial de correos enviados</h2>
+
+<mat-list *ngIf="feedbacks.length > 0">
+  <mat-list-item *ngFor="let feedback of feedbacks">
+    <div class="feedback-item">
+      <p><strong>Tipo:</strong> {{ feedback.tipo }}</p>
+      <p *ngIf="feedback.turno"><strong>Turno:</strong> {{ feedback.turno }}</p>
+      <p><strong>Fecha:</strong> {{ feedback.fecha | date:'short' }}</p>
+      <p><strong>Contenido:</strong> "{{ feedback.contenido }}"</p>
+    </div>
+  </mat-list-item>
+</mat-list>
+
+<div *ngIf="feedbacks.length === 0">
+  <p>No hay feedback reciente.</p>
+</div>
+
+<div class="botones">
+  <button mat-button (click)="cerrar()">Cerrar</button>
+</div>
