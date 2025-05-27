@@ -1,0 +1,38 @@
+:host {
+  display: block;
+  padding: 24px;
+  background: #fff;
+  border-radius: 12px;
+  max-width: 480px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+h2 {
+  margin-top: 0;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.notificacion {
+  margin-bottom: 12px;
+  background-color: #f4f4f4;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.mensaje {
+  font-weight: bold;
+  margin-bottom: 6px;
+}
+
+.info {
+  font-size: 13px;
+  color: #555;
+}
+
+.botones {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+}

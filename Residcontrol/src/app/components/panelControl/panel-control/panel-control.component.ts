@@ -10,6 +10,8 @@ import { ModalPeticionDiaComponent } from '../../modales/modalPeticionDia/modal-
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ModalEliminarEmpleadoComponent } from '../../modales/modalEliminarEmpleado/modal-eliminar-empleado/modal-eliminar-empleado.component';
+import { ModalEliminarResidenteComponent } from '../../modales/modalEliminarResidente/modal-eliminar-residente/modal-eliminar-residente.component';
+import { ModalCambioEstadoResidenteComponent } from '../../modales/modalCambioEstadoResidente/modal-cambio-estado-residente/modal-cambio-estado-residente.component';
 
 
 @Component({
@@ -23,7 +25,9 @@ import { ModalEliminarEmpleadoComponent } from '../../modales/modalEliminarEmple
   ModalAsignarTareaComponent,
   ModalAsignarPuestoComponent,
   ModalPeticionDiaComponent,
-  ModalEliminarEmpleadoComponent
+  ModalEliminarEmpleadoComponent,
+  ModalEliminarResidenteComponent,
+  ModalCambioEstadoResidenteComponent
   ],
   templateUrl: './panel-control.component.html',
   styleUrl: './panel-control.component.scss'
@@ -86,6 +90,26 @@ rolUsuario: string = 'Administrador';
       hasBackdrop: true
     });
   }
+  abrirModalEliminarResidente() {
+    this.dialog.open(ModalEliminarResidenteComponent, {
+      width: '480px',
+      disableClose: false,
+      hasBackdrop: true
+    });
+  }
+  abrirModalCambioEstadoResidente() {
+    this.dialog.open(ModalCambioEstadoResidenteComponent, {
+      width: '480px',
+      disableClose: false,
+      hasBackdrop: true
+    });
+  }
+
+
+
+
+
+
   cerrarSesion() {
   // Aquí puedes añadir lógica para limpiar datos si fuese necesario
 

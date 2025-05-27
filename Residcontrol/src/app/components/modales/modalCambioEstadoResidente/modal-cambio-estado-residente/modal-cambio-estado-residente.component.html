@@ -1,0 +1,33 @@
+<h2>Cambiar estado del residente</h2>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Selecciona un residente</mat-label>
+  <mat-select [(ngModel)]="residenteSeleccionado">
+    <mat-option *ngFor="let r of residentes" [value]="r">
+      {{ r.nombre }} {{ r.apellidos }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div *ngIf="residenteSeleccionado" class="residente-info">
+  <img [src]="residenteSeleccionado.imagen" alt="Foto residente" class="foto">
+  <div class="datos">
+    <p><strong>Nombre:</strong> {{ residenteSeleccionado.nombre }}</p>
+    <p><strong>Apellidos:</strong> {{ residenteSeleccionado.apellidos }}</p>
+    <p><strong>Habitación:</strong> {{ residenteSeleccionado.habitacion }}</p>
+    <p><strong>Edad:</strong> {{ residenteSeleccionado.edad }}</p>
+    <p><strong>Estado actual:</strong> {{ residenteSeleccionado.estado }}</p>
+  </div>
+</div>
+
+<mat-form-field appearance="fill" class="full-width" *ngIf="residenteSeleccionado">
+  <mat-label>Nuevo estado</mat-label>
+  <mat-select [(ngModel)]="nuevoEstado">
+    <mat-option *ngFor="let estado of estadosDisponibles" [value]="estado">{{ estado }}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div class="button-group">
+  <button mat-raised-button color="primary" [disabled]="!nuevoEstado" (click)="cambiarEstado()">Cambiar</button>
+  <button mat-button (click)="cerrar()">Cancelar</button>
+</div>
