@@ -1,1 +1,22 @@
-<p>modal-revisar-notificaciones works!</p>
+<h2>Notificaciones recientes</h2>
+
+<mat-list *ngIf="notificaciones.length > 0">
+  <mat-list-item *ngFor="let notif of notificaciones">
+    <div class="notificacion">
+      <p class="mensaje">{{ notif.texto }}</p>
+      <p class="info">
+        <strong>Creado por:</strong> {{ notif.usuario }}<br />
+        <strong>Alarma:</strong> {{ notif.alarma }}<br />
+        <strong>Fecha:</strong> {{ notif.fecha | date:'short' }}
+      </p>
+    </div>
+  </mat-list-item>
+</mat-list>
+
+<div *ngIf="notificaciones.length === 0">
+  <p>No hay notificaciones recientes.</p>
+</div>
+
+<div class="botones">
+  <button mat-button (click)="cerrar()">Cerrar</button>
+</div>
