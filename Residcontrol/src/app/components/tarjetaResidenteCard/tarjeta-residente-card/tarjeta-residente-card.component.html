@@ -21,8 +21,9 @@
       <span>{{ residenteSeleccionado.apellidos }}</span>
       <span>Habitación: {{ residenteSeleccionado.habitacion }}</span>
       <span>Edad: {{ residenteSeleccionado.edad }}</span>
-      <span>Estado actual: {{ residenteSeleccionado.estado }}</span>
-      <span>Ingreso: {{ residenteSeleccionado.fechaIngreso }}</span>
+      <span>Estado: <span class="estado" [ngClass]="colorEstado">{{ residenteSeleccionado.estado }}</span></span>
+      <!--<span>Ingreso: {{ residenteSeleccionado.fechaIngreso }}</span>-->
+      <span>Ubicación: {{ residenteSeleccionado.ubicacion }}</span>
     </div>
   </div>
 </div>
