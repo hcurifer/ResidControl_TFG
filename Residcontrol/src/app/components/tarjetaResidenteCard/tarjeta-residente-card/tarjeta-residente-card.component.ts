@@ -15,6 +15,7 @@ import { ApiService } from '../../../services/api.service';
 export class ResidenteCardComponent implements OnInit {
   residentes: any[] = [];
   residenteSeleccionado: any = null;
+  idSeleccionado: number | null = null;
 
   constructor(private api: ApiService) {}
 
@@ -23,11 +24,13 @@ export class ResidenteCardComponent implements OnInit {
       this.residentes = data;
       if (data.length > 0) {
         this.residenteSeleccionado = data[0]; // primero por defecto
+        this.idSeleccionado = data[0].id_residente; 
       }
     });
   }
 
   seleccionarResidente(id: number) {
+    this.idSeleccionado = id;
     const encontrado = this.residentes.find(r => r.id_residente === id);
     if (encontrado) {
       this.residenteSeleccionado = encontrado;

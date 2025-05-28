@@ -5,7 +5,7 @@
     <mat-form-field appearance="fill" class="residente-selector">
       <mat-label>Seleccionar residente</mat-label>
       <mat-select 
-        [(value)]="residenteSeleccionado.id_residente"
+        [(value)]="idSeleccionado"
         (selectionChange)="seleccionarResidente($event.value)">
           <mat-option *ngFor="let r of residentes" [value]="r.id_residente">
             {{ r.nombre }} {{ r.apellidos }}
