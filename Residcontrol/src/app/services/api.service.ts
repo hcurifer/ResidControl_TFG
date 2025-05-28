@@ -26,6 +26,10 @@ export class ApiService {
       }
     });
   }
+  postResidente(residente: any) {
+    return this.http.post(`${this.baseUrl}/residentes/`, residente);
+  }
+
 
 
 

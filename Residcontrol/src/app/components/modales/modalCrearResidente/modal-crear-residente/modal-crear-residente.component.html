@@ -1,44 +1,46 @@
 <h2>Crear nuevo residente</h2>
 
-<div class="form-container">
+<div class="scroll-contenido">
   <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Nombre *</mat-label>
+    <mat-label>Nombre*</mat-label>
     <input matInput [(ngModel)]="nombre" required />
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Apellidos *</mat-label>
+    <mat-label>Apellidos*</mat-label>
     <input matInput [(ngModel)]="apellidos" required />
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Habitación *</mat-label>
+    <mat-label>Habitación*</mat-label>
     <input matInput [(ngModel)]="habitacion" required />
   </mat-form-field>
 
   <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Edad *</mat-label>
-    <input matInput type="number" [(ngModel)]="edad" required />
+    <mat-label>Edad</mat-label>
+    <input matInput type="number" [(ngModel)]="edad" />
   </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Ubicación</mat-label>
+    <input matInput [(ngModel)]="ubicacion" />
+  </mat-form-field>
+
+  <!-- <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Fecha de ingreso</mat-label>
+    <input matInput type="date" [(ngModel)]="fechaIngreso" />
+  </mat-form-field> -->
 
   <mat-form-field appearance="fill" class="full-width">
     <mat-label>Estado</mat-label>
-    <input matInput [(ngModel)]="estado" />
-  </mat-form-field>
-
-  <mat-form-field appearance="fill" class="full-width">
-    <mat-label>Fecha de ingreso</mat-label>
-    <input matInput [(ngModel)]="ingreso" type="date" />
+    <input matInput [value]="estado" disabled />
   </mat-form-field>
 
   <div class="button-group">
     <button mat-button (click)="cancelar()">Cancelar</button>
-    <button
-      mat-raised-button
-      color="primary"
-      (click)="crear()"
-      [disabled]="!nombre || !apellidos || !habitacion || !edad"
-    >
+    <button mat-raised-button color="primary"
+            (click)="crearResidente()"
+            [disabled]="!nombre || !apellidos || !habitacion ">
       Crear
     </button>
   </div>
