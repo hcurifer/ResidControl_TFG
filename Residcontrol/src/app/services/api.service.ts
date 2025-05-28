@@ -10,9 +10,12 @@ export class ApiService {
 
   constructor(private http: HttpClient) {}
 
+  // Usuarios
   getUsuarios(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/usuarios/`);
   }
+
+  // Residentes
   getResidentes(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/residentes/`);
   }
