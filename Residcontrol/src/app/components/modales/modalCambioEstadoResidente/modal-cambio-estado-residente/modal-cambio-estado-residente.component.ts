@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ApiService } from '../../../../services/api.service';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -19,47 +20,34 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     MatSelectModule,
     MatInputModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   templateUrl: './modal-cambio-estado-residente.component.html',
   styleUrl: './modal-cambio-estado-residente.component.scss'
 })
-export class ModalCambioEstadoResidenteComponent {
-  residentes = [
-    {
-      nombre: 'María',
-      apellidos: 'García Pérez',
-      habitacion: '101',
-      edad: 82,
-      estado: 'Autónomo',
-      imagen: 'assets/img/user-placeholder.png'
-    },
-    {
-      nombre: 'Luis',
-      apellidos: 'Pérez Ruiz',
-      habitacion: '102',
-      edad: 79,
-      estado: 'Dependiente parcial',
-      imagen: 'assets/img/user-placeholder.png'
-    }
-  ];
+export class ModalCambioEstadoResidenteComponent implements OnInit {
+  residentes: any[] = [];
+  residenteSeleccionado: any = null;
 
   estadosDisponibles = [
-    'Autónomo',
-    'Dependiente parcial',
-    'Dependiente total',
-    'En hospital',
-    'Fuera temporalmente',
-    'Egresado'
+    'en residencia',
+    'fuera',
+    'ingresado'
   ];
 
-  residenteSeleccionado: any = null;
   nuevoEstado: string = '';
 
   constructor(
+     private api: ApiService,
     private dialogRef: MatDialogRef<ModalCambioEstadoResidenteComponent>,
     private snackBar: MatSnackBar
   ) {}
+
+  ngOnInit(): void {
+    this.api.getResidentes().subscribe((data) => {
+      this.residentes = data;
+    });
+  }
 
   cambiarEstado() {
     this.snackBar.open('Estado del residente actualizado', 'Cerrar', {
