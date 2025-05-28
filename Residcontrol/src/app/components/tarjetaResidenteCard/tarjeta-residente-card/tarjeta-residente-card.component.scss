@@ -61,6 +61,27 @@
     font-size: 16px;
   }
 }
+.estado {
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+
+.estado-verde {
+  background-color: #d0f0d0;
+  color: #1e7f1e;
+}
+
+.estado-amarillo {
+  background-color: #fff6cc;
+  color: #a08900;
+}
+
+.estado-rojo {
+  background-color: #f8d0d0;
+  color: #b30000;
+}
 
 .estado {
   font-weight: bold;

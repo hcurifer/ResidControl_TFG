@@ -36,19 +36,18 @@ export class ResidenteCardComponent implements OnInit {
       this.residenteSeleccionado = encontrado;
     }
   }
-
   get colorEstado(): string {
   if (!this.residenteSeleccionado) return '';
 
   switch (this.residenteSeleccionado.estado.toLowerCase()) {
-      case 'en residencia':
-        return 'estado-verde';
-      case 'fuera':
-        return 'estado-amarillo';
-      case 'ingresado':
-        return 'estado-rojo';
-      default:
-        return '';
-    }
+    case 'en residencia':
+      return 'estado-verde';
+    case 'fuera':
+      return 'estado-amarillo';
+    case 'ingresado':
+      return 'estado-rojo';
+    default:
+      return '';
   }
+}
 }
