@@ -50,15 +50,27 @@ export class ModalCambioEstadoResidenteComponent implements OnInit {
   }
 
   cambiarEstado() {
-    this.snackBar.open('Estado del residente actualizado', 'Cerrar', {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top'
-    });
+    if (!this.residenteSeleccionado || !this.nuevoEstado) return;
 
-    this.dialogRef.close();
-  }
-
+    this.api.putEstadoResidente(this.residenteSeleccionado.id_residente, this.nuevoEstado)
+      .subscribe({
+        next: () => {
+          this.snackBar.open('Estado del residente actualizado correctamente', 'Cerrar', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          });
+          this.dialogRef.close();
+        },
+        error: () => {
+          this.snackBar.open('Hubo un error al actualizar el estado', 'Cerrar', {
+            duration: 3000,
+            horizontalPosition: 'center',
+            verticalPosition: 'top'
+          });
+        }
+      });
+    }
   cerrar() {
     this.dialogRef.close();
   }

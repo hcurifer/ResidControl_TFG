@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiService {
-  private baseUrl = 'http://127.0.0.1:8000'; // Cambia si usas otro puerto
+  private baseUrl = 'http://127.0.0.1:8000'; // Cambiar si levanto en servidor, direcion actual local
 
   constructor(private http: HttpClient) {}
 
@@ -16,5 +16,14 @@ export class ApiService {
   getResidentes(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/residentes/`);
   }
+  putEstadoResidente(id: number, nuevoEstado: string) {
+    return this.http.put(`${this.baseUrl}/residentes/${id}/estado`, null, {
+      params: {
+        nuevo_estado: nuevoEstado
+      }
+    });
+  }
+
+
 
 }
