@@ -29,6 +29,10 @@ export class ApiService {
   postResidente(residente: any) {
     return this.http.post(`${this.baseUrl}/residentes/`, residente);
   }
+  deleteResidente(id: number) {
+    return this.http.delete(`${this.baseUrl}/residentes/${id}`);
+  }
+
 
 
 
