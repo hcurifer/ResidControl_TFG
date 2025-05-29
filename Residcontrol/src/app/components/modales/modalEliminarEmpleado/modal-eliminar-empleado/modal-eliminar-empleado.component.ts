@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -7,6 +7,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ApiService } from '../../../../services/api.service';
 
 @Component({
   selector: 'app-modal-eliminar-empleado',
@@ -24,41 +25,42 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   templateUrl: './modal-eliminar-empleado.component.html',
   styleUrl: './modal-eliminar-empleado.component.scss'
 })
-export class ModalEliminarEmpleadoComponent {
-  empleados = [
-    {
-      nombre: 'Carlos',
-      apellidos: 'Rodríguez Fernández',
-      numeroEmpresa: 3,
-      rol: 'Administrador',
-      email: 'carlos@residencia.com',
-      imagen: 'assets/img/user-placeholder.png'
-    },
-    {
-      nombre: 'María',
-      apellidos: 'Sánchez Pérez',
-      numeroEmpresa: 7,
-      rol: 'Enfermero',
-      email: 'maria@residencia.com',
-      imagen: 'assets/img/user-placeholder.png'
-    }
-  ];
-
+export class ModalEliminarEmpleadoComponent implements OnInit {
+  empleados: any[] = [];
   empleadoSeleccionado: any = null;
 
   constructor(
+    private api: ApiService,
     private dialogRef: MatDialogRef<ModalEliminarEmpleadoComponent>,
     private snackBar: MatSnackBar
   ) {}
 
-  eliminar() {
-    this.snackBar.open('Usuario eliminado correctamente', 'Cerrar', {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top'
+  ngOnInit(): void {
+    this.api.getUsuarios().subscribe((data) => {
+      this.empleados = data;
     });
+  }
 
-    this.dialogRef.close();
+  eliminar() {
+    if (!this.empleadoSeleccionado?.id_usuario) return;
+
+    this.api.deleteUsuario(this.empleadoSeleccionado.id_usuario).subscribe({
+      next: () => {
+        this.snackBar.open('Usuario eliminado correctamente', 'Cerrar', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
+        this.dialogRef.close();
+      },
+      error: () => {
+        this.snackBar.open('Error al eliminar el usuario', 'Cerrar', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
+      }
+    });
   }
 
   cerrar() {
