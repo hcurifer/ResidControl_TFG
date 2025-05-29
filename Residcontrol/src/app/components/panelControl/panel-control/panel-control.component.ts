@@ -20,16 +20,7 @@ import { ModalRevisarNotificacionesComponent } from '../../modales/modalRevisarN
   standalone: true,
   imports: [CommonModule,
   MatButtonModule,
-  ModalCrearUsuarioComponent,
   MatDialogModule,
-  ModalCrearResidenteComponent,
-  ModalAsignarTareaComponent,
-  ModalAsignarPuestoComponent,
-  ModalPeticionDiaComponent,
-  ModalEliminarEmpleadoComponent,
-  ModalEliminarResidenteComponent,
-  ModalCambioEstadoResidenteComponent,
-  ModalRevisarNotificacionesComponent
   ],
   templateUrl: './panel-control.component.html',
   styleUrl: './panel-control.component.scss'
