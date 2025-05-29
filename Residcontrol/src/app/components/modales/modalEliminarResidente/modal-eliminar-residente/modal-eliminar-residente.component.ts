@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ApiService } from '../../../../services/api.service';
 
 @Component({
   selector: 'app-modal-eliminar-residente',
@@ -24,41 +25,42 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   templateUrl: './modal-eliminar-residente.component.html',
   styleUrl: './modal-eliminar-residente.component.scss'
 })
-export class ModalEliminarResidenteComponent {
-  residentes = [
-    {
-      nombre: 'María',
-      apellidos: 'García Pérez',
-      habitacion: '101',
-      edad: 82,
-      estado: 'Dependiente parcial',
-      imagen: 'assets/img/user-placeholder.png'
-    },
-    {
-      nombre: 'Luis',
-      apellidos: 'Pérez Ruiz',
-      habitacion: '102',
-      edad: 79,
-      estado: 'Autónomo',
-      imagen: 'assets/img/user-placeholder.png'
-    }
-  ];
-
+export class ModalEliminarResidenteComponent implements OnInit {
+  residentes: any[] = [];
   residenteSeleccionado: any = null;
 
   constructor(
+    private api: ApiService,
     private dialogRef: MatDialogRef<ModalEliminarResidenteComponent>,
     private snackBar: MatSnackBar
   ) {}
 
-  eliminar() {
-    this.snackBar.open('Residente eliminado correctamente', 'Cerrar', {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top'
+  ngOnInit(): void {
+    this.api.getResidentes().subscribe((data) => {
+      this.residentes = data;
     });
+  }
 
-    this.dialogRef.close();
+  eliminar() {
+    if (!this.residenteSeleccionado?.id_residente) return;
+
+    this.api.deleteResidente(this.residenteSeleccionado.id_residente).subscribe({
+      next: () => {
+        this.snackBar.open('Residente eliminado correctamente', 'Cerrar', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
+        this.dialogRef.close();
+      },
+      error: () => {
+        this.snackBar.open('Error al eliminar el residente', 'Cerrar', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
+      }
+    });
   }
 
   cerrar() {
