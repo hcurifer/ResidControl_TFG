@@ -14,6 +14,10 @@ export class ApiService {
   getUsuarios(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/usuarios/`);
   }
+  deleteUsuario(id: number) {
+    return this.http.delete(`${this.baseUrl}/usuarios/${id}`);
+  }
+
 
   // Residentes
   getResidentes(): Observable<any[]> {
