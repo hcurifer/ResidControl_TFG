@@ -35,8 +35,8 @@ import { ModalRevisarNotificacionesComponent } from '../../modales/modalRevisarN
   styleUrl: './panel-control.component.scss'
 })
 export class PanelControlComponent {
-  @Input() visible = false;
-rolUsuario: string = 'Administrador';
+  @Input() visible = true;
+  rolUsuario: string = 'Administrador';
   
 
   constructor(

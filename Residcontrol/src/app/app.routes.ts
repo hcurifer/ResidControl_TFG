@@ -2,19 +2,20 @@ import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 
 export const routes: Routes = [
-  {
-    path: 'login',
-    loadComponent: () =>
-      import('./pages/login/page-login/page-login.component').then(m => m.PageLoginComponent)
-  },
+  
   {
     path: '',
     component: AppComponent,
     children: [
       {
         path: '',
-        redirectTo: 'dashboard',
+        redirectTo: 'login',
         pathMatch: 'full'
+      },
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./pages/login/page-login/page-login.component').then(m => m.PageLoginComponent)
       },
       {
         path: 'dashboard',
