@@ -44,13 +44,10 @@ export class LoginComponent {
 
     this.auth.login(this.numeroEmpresa, this.password).subscribe({
       next: res => {
-        this.auth.guardarSesion(res.token, {
-          nombre: res.nombre,
-          apellidos: res.apellidos,
-          rol: res.rol
-        });
+        this.auth.guardarSesion(res.token, res.usuario);
 
-        this.snackBar.open(`Bienvenido ${res.nombre}`, 'Cerrar', {
+
+        this.snackBar.open(`Bienvenido ${res.usuario.nombre}`, 'Cerrar', {
           duration: 2500,
           horizontalPosition: 'center',
           verticalPosition: 'top'

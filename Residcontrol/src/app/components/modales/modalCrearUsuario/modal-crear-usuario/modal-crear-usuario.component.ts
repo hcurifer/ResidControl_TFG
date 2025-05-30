@@ -25,6 +25,7 @@ import { ApiService } from '../../../../services/api.service';
 export class ModalCrearUsuarioComponent {
   nombre = '';
   apellidos = '';
+  edad: number | null = null;
   numeroEmpresa = '';
   email = '';
   contrasenia = '';
@@ -51,6 +52,7 @@ export class ModalCrearUsuarioComponent {
     const nuevoUsuario = {
       nombre: this.nombre,
       apellidos: this.apellidos,
+      edad: this.edad,
       numero_empresa: this.numeroEmpresa,
       email: this.email,
       contrasenia: this.contrasenia,

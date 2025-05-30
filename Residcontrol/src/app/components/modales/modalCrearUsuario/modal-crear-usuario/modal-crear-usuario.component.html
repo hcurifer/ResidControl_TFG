@@ -11,6 +11,11 @@
 </mat-form-field>
 
 <mat-form-field appearance="fill" class="full-width">
+  <mat-label>Edad (opcional)</mat-label>
+  <input matInput type="number" [(ngModel)]="edad" />
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="full-width">
   <mat-label>Número de empresa (EMPxxxxx)*</mat-label>
   <input matInput [(ngModel)]="numeroEmpresa" required />
 </mat-form-field>
