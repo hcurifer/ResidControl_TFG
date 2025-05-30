@@ -8,14 +8,14 @@
     <button mat-raised-button color="primary" (click)="abrirModalRevisarNotificaciones()">Revisar notificaciones</button>
   </div>
 
-  <div *ngIf="rolUsuario === 'Administrador'" class="panel-buttons ">
+  <div *ngIf="rolUsuario === 'mando'" class="panel-buttons ">
     <button mat-raised-button color="primary" (click)="abrirModalCrearUsuario()">Crear empleados</button>
     <button mat-raised-button color="primary" (click)="abrirModalCrearResidente()">Crear residente</button>
     <button mat-raised-button color="primary" (click)="abrirModalAsignarPuesto()">Asignar puesto</button>
     <button mat-raised-button color="primary" (click)="abrirModalAsignarTarea()">Asignar tarea especial</button>
   </div>
 
-  <div class="panel-buttons" *ngIf="rolUsuario === 'Administrador'">
+  <div class="panel-buttons" *ngIf="rolUsuario === 'mando'">
     <button mat-raised-button color="warn" (click)="abrirModalEliminarEmpleado()">Eliminar empleado</button>
     <button mat-raised-button color="warn" (click)="abrirModalEliminarResidente()">Eliminar residente</button>
   </div>
