@@ -9,7 +9,7 @@ import { MatOptionModule } from '@angular/material/core';
 import { PanelControlComponent } from '../../../components/panelControl/panel-control/panel-control.component';
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-page-dashboard',
@@ -29,29 +29,14 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
   styleUrl: './page-dashboard.component.scss'
 })
 export class PageDashboardComponent {
- rolUsuario = 'Administrador';
+  rolUsuario = '';
+  usuario: any = null;
 
-residentes = [
-  {
-    nombre: 'María',
-    apellidos: 'García Pérez',
-    habitacion: '101',
-    edad: 82,
-    estado: 'Dependiente parcial',
-    fechaIngreso: '12/03/2024',
-    imagen: 'assets/img/user-placeholder.png'
-  },
-  {
-    nombre: 'Luis',
-    apellidos: 'Hernández Ruiz',
-    habitacion: '102',
-    edad: 78,
-    estado: 'Autónomo',
-    fechaIngreso: '20/07/2023',
-    imagen: 'assets/img/user-placeholder.png'
+  constructor(private authService: AuthService) {
+    this.usuario = this.authService.getUsuario();
+    this.rolUsuario = this.usuario?.rol || '';
   }
-];
 
-residenteSeleccionado = this.residentes[0];
+
 
 }

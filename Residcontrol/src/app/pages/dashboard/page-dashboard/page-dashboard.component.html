@@ -8,14 +8,14 @@
   <div class="section">
     <div class="section-content">
       <app-usuario-card
-  [nombre]="'Carlos'"
-  [apellidos]="'Rodríguez Fernández'"
-  [numeroEmpresas]="3"
-  [imagenUrl]="'assets/img/user-placeholder.png'"
-  [rol]="'Administrador'"
-  [ultimoAcceso]="'18/05/2025'"
-  [correo]="'carlos@residencia.com'"
-></app-usuario-card>
+        [nombre]="usuario?.nombre"
+        [apellidos]="usuario?.apellidos"
+        [numeroEmpresa]="usuario?.numero_empresa"
+        [edad]="usuario?.edad"
+        [imagenUrl]="'assets/img/user-placeholder.png'"
+        [rol]="usuario?.rol"
+        [correo]="usuario?.email"
+      ></app-usuario-card>
 
     </div>
   </div>

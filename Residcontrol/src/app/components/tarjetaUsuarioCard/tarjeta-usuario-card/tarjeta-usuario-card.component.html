@@ -1,20 +1,21 @@
 <div class="usuario-card-wrapper">
   <div class="usuario-header">
     <span class="titulo">Datos del usuario</span>
-    <span class="rol">{{ rol }}</span>
+    <span class="rol" [ngClass]="rol">{{ rol }}</span>
   </div>
 
   <div class="usuario-card">
     <div class="foto">
-      <img src="imagenUrl" alt="Foto usuario" />
+      <img [src]="imagenUrl" alt="Foto usuario" />
     </div>
 
     <div class="info">
       <div class="nombre">{{ nombre }}</div>
       <div class="apellidos">{{ apellidos }}</div>
-      <div class="dato">Empresas asignadas: {{ numeroEmpresas }}</div>
-      <div class="dato">Último acceso: {{ ultimoAcceso }}</div>
+      <div class="dato">Numero Empresa: {{ numeroEmpresa }}</div> 
+      <div class="dato">Edad: {{ edad }}</div> 
       <div class="dato">Correo: {{ correo }}</div>
+      <div class="dato">Puesto: {{ rol }}</div>
     </div>
   </div>
 </div>
