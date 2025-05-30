@@ -35,7 +35,6 @@ export class PageDashboardComponent {
   constructor(private authService: AuthService) {
     this.usuario = this.authService.getUsuario();
     this.rolUsuario = this.usuario?.rol || '';
-    console.log('🔎 Datos de sesión:', this.authService.getUsuario());
   }
 
 
