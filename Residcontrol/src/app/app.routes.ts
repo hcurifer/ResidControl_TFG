@@ -1,21 +1,25 @@
 import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  
+  // Ruta de login fuera de la app protegida
+  {
+    path: 'login',
+    loadComponent: () =>
+      import('./pages/login/page-login/page-login.component').then(m => m.PageLoginComponent)
+  },
+  // Layout protegido con rutas hijas
   {
     path: '',
-    component: AppComponent,
+    loadComponent: () =>
+      import('./app.component').then(m => m.AppComponent),
+    canActivate: [authGuard], // aplica el guard
     children: [
       {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'dashboard',
         pathMatch: 'full'
-      },
-      {
-        path: 'login',
-        loadComponent: () =>
-          import('./pages/login/page-login/page-login.component').then(m => m.PageLoginComponent)
       },
       {
         path: 'dashboard',
