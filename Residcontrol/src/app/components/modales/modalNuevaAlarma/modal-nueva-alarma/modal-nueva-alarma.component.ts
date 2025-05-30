@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,6 +7,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ApiService } from '../../../../services/api.service';
 
 @Component({
   selector: 'app-modal-nueva-alarma',
@@ -22,38 +23,66 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
     MatSnackBarModule
   ],
   templateUrl: './modal-nueva-alarma.component.html',
-  styleUrls: ['./modal-nueva-alarma.component.scss']
+  styleUrl: './modal-nueva-alarma.component.scss'
 })
-export class ModalNuevaAlarmaComponent {
+export class ModalNuevaAlarmaComponent implements OnInit {
   descripcion: string = '';
-  personalSeleccionado: string = '';
-  residenteSeleccionado: string = '';
+  tipo: string = 'alarma';
+  idUsuarioSeleccionado: number | null = null;
+  idResidenteSeleccionado: number | null = null;
 
-  listaPersonal: string[] = ['Enfermero 1', 'Enfermero 2', 'Supervisora'];
-  listaResidentes: string[] = ['María García', 'Luis Pérez', 'Ana López'];
+  listaUsuarios: any[] = [];
+  listaResidentes: any[] = [];
 
   constructor(
-    private dialogRef: MatDialogRef<ModalNuevaAlarmaComponent>,
-    private snackBar: MatSnackBar
+     private dialogRef: MatDialogRef<ModalNuevaAlarmaComponent>,
+    private snackBar: MatSnackBar,
+    private apiService: ApiService
   ) {}
 
+  ngOnInit(): void {
+    this.apiService.getUsuarios().subscribe({
+      next: (usuarios) => {
+        this.listaUsuarios = usuarios;
+      },
+      error: () => {
+        this.snackBar.open('Error al cargar usuarios', 'Cerrar', { duration: 3000 });
+      }
+    });
+
+    this.apiService.getResidentes().subscribe({
+      next: (residentes) => {
+        this.listaResidentes = residentes;
+      },
+      error: () => {
+        this.snackBar.open('Error al cargar residentes', 'Cerrar', { duration: 3000 });
+      }
+    });
+  }
+
   crearAlarma() {
-    console.log('NUEVA ALARMA:', {
+    const nuevaAlarma = {
+      tipo: this.tipo,
       descripcion: this.descripcion,
-      personal: this.personalSeleccionado,
-      residente: this.residenteSeleccionado
-    });
+      estado: 'pendiente',
+      fecha: new Date().toISOString(),
+      id_usuario: this.idUsuarioSeleccionado,
+      id_residente: this.idResidenteSeleccionado
+    };
 
-    this.snackBar.open('Alarma creada correctamente', 'Cerrar', {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top'
+    this.apiService.crearAlarma(nuevaAlarma).subscribe({
+      next: () => {
+        this.snackBar.open('Alarma creada correctamente', 'Cerrar', { duration: 3000 });
+        this.dialogRef.close();
+      },
+      error: () => {
+        this.snackBar.open('Error al crear la alarma', 'Cerrar', { duration: 3000 });
+      }
     });
-
-    this.dialogRef.close();
   }
 
   cancelar() {
     this.dialogRef.close();
   }
 }
+

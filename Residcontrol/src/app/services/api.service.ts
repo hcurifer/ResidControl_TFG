@@ -47,7 +47,18 @@ export class ApiService {
     return this.http.delete(`${this.baseUrl}/residentes/${id}`);
   }
 
-
+  //Alarmas
+  crearAlarma(data: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/alarmas/`, data);
+  }
+  getAlarmas(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/alarmas/`);
+  }
+  putEstadoAlarma(id: number, nuevoEstado: string): Observable<any> {
+    return this.http.put(`${this.baseUrl}/alarmas/${id}/estado`, null, {
+      params: { nuevo_estado: nuevoEstado }
+    });
+  }
 
 
 
