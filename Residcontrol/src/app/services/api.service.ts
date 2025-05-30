@@ -17,6 +17,16 @@ export class ApiService {
   deleteUsuario(id: number) {
     return this.http.delete(`${this.baseUrl}/usuarios/${id}`);
   }
+  crearUsuario(usuario: {
+    nombre: string;
+    apellidos: string;
+    numero_empresa: string;
+    email: string;
+    contrasenia: string;
+    rol: string;
+  }): Observable<any> {
+    return this.http.post(`${this.baseUrl}/usuarios/`, usuario);
+  }
 
 
   // Residentes

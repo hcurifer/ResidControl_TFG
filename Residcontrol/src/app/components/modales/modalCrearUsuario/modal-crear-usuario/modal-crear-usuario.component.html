@@ -11,8 +11,8 @@
 </mat-form-field>
 
 <mat-form-field appearance="fill" class="full-width">
-  <mat-label>Número de empresa*</mat-label>
-  <input matInput type="number" [(ngModel)]="numeroEmpresa" required />
+  <mat-label>Número de empresa (EMPxxxxx)*</mat-label>
+  <input matInput [(ngModel)]="numeroEmpresa" required />
 </mat-form-field>
 
 <mat-form-field appearance="fill" class="full-width">
@@ -21,13 +21,22 @@
 </mat-form-field>
 
 <mat-form-field appearance="fill" class="full-width">
-  <mat-label>Cargo</mat-label>
-  <input matInput [(ngModel)]="cargo" />
+  <mat-label>Contraseña*</mat-label>
+  <input matInput type="password" [(ngModel)]="contrasenia" required />
+</mat-form-field>
+
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Cargo*</mat-label>
+  <mat-select [(ngModel)]="rol">
+    <mat-option value="mando">Mando</mat-option>
+    <mat-option value="enfermero">Enfermero</mat-option>
+  </mat-select>
 </mat-form-field>
 
 <div class="button-group">
   <button mat-button (click)="cancelar()">Cancelar</button>
-  <button mat-raised-button color="primary" (click)="crearUsuario()" [disabled]="!nombre || !apellidos || !numeroEmpresa || !email">
+  <button mat-raised-button color="primary" (click)="crearUsuario()"
+    [disabled]="!nombre || !apellidos || !numeroEmpresaValida || !email || !contrasenia || !rol">
     Crear
   </button>
 </div>
