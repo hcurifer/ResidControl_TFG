@@ -5,7 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
-import { ApiService } from '../../../../services/api.service';
+import { MatSelectModule } from '@angular/material/select';
+import { ApiService } from '../../../../services/api.service'; 
 
 @Component({
   selector: 'app-modal-crear-usuario',
@@ -14,6 +15,7 @@ import { ApiService } from '../../../../services/api.service';
     CommonModule,
     FormsModule,
     MatInputModule,
+    MatSelectModule,
     MatButtonModule,
     MatSnackBarModule
   ],
@@ -23,33 +25,52 @@ import { ApiService } from '../../../../services/api.service';
 export class ModalCrearUsuarioComponent {
   nombre = '';
   apellidos = '';
-  numeroEmpresa: number | null = null;
+  numeroEmpresa = '';
   email = '';
-  cargo = '';
+  contrasenia = '';
+  rol = '';
 
   constructor(
     private dialogRef: MatDialogRef<ModalCrearUsuarioComponent>,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private apiService: ApiService
   ) {}
 
+  get numeroEmpresaValida(): boolean {
+    return /^EMP\d{5,}$/.test(this.numeroEmpresa);
+  }
+
   crearUsuario() {
-  console.log('USUARIO NUEVO:', {
-    nombre: this.nombre,
-    apellidos: this.apellidos,
-    numeroEmpresa: this.numeroEmpresa,
-    email: this.email,
-    cargo: this.cargo
-  });
+    if (!this.numeroEmpresaValida) {
+      this.snackBar.open('Número de empresa inválido. Debe empezar por EMP y tener al menos 5 dígitos.', 'Cerrar', {
+        duration: 3000
+      });
+      return;
+    }
 
-  this.snackBar.open('Usuario creado correctamente', 'Cerrar', {
-    duration: 3000,
-    horizontalPosition: 'center',
-    verticalPosition: 'top'
-  });
+    const nuevoUsuario = {
+      nombre: this.nombre,
+      apellidos: this.apellidos,
+      numero_empresa: this.numeroEmpresa,
+      email: this.email,
+      contrasenia: this.contrasenia,
+      rol: this.rol
+    };
 
-  this.dialogRef.close();
-}
-
+    this.apiService.crearUsuario(nuevoUsuario).subscribe({
+      next: () => {
+        this.snackBar.open('Usuario creado correctamente', 'Cerrar', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
+        this.dialogRef.close();
+      },
+      error: () => {
+        this.snackBar.open('Error al crear usuario', 'Cerrar', { duration: 3000 });
+      }
+    });
+  }
 
   cancelar() {
     this.dialogRef.close();
