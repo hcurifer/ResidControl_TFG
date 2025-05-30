@@ -5,11 +5,16 @@
   ></app-menu>
 
   <div class="tareas-grid">
+    <div class="tarea-container" style="width: 100%;">
+        <app-tareas style="width: 100%;" [tareas_pendientes]="tareasPendientes" [tareas_completadas]="tareasCompletadas"></app-tareas>
+    </div>
+    <!--
     <div class="tarea-container">
-        <app-tareas-pendientes [tareas]="tareasPendientes"></app-tareas-pendientes>
+        <app-tareas-pendientes style="width: 100%;" [tareas]="tareasPendientes"></app-tareas-pendientes>
     </div>
     <div class="tarea-container">
-        <app-tareas-completadas [tareas]="tareasCompletadas"></app-tareas-completadas>
+        <app-tareas-completadas style="width: 100%;" [tareas]="tareasCompletadas"></app-tareas-completadas>
     </div>
+    -->
   </div>
 </div>

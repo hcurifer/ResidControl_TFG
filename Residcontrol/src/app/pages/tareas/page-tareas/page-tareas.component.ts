@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { MenuComponent } from '../../../components/menu/menu.component';
 import { TareasPendientesComponent } from '../../../components/tareas-pendientes/tareas-pendientes.component';
 import { TareasCompletadasComponent } from '../../../components/tareas-completadas/tareas-completadas.component';
+import { TareasComponent } from "../../../components/tareas/tareas.component";
 
 @Component({
   selector: 'app-page-tareas',
   standalone: true,
-  imports: [CommonModule, MenuComponent, TareasPendientesComponent, TareasCompletadasComponent],
+  imports: [CommonModule, MenuComponent, TareasPendientesComponent, TareasCompletadasComponent, TareasComponent],
   templateUrl: './page-tareas.component.html',
   styleUrl: './page-tareas.component.scss'
 })

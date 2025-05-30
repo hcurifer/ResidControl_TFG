@@ -1,0 +1,39 @@
+<div style="gap: 10px; display: flex; width: 100%;">
+    <div class="card">
+    <h3>PENDIENTES</h3>
+    <ul>
+        <li
+        *ngFor="let tarea of tareas_pendientes"
+        [@tareaAnimada]="estaCompletada(tarea) ? 'completada' : 'pendiente'"
+        >
+        <mat-checkbox
+            (change)="completarTarea(tarea)"
+            [disabled]="estaCompletada(tarea)"
+        >
+            <span class="descripcion" [class.tachado]="estaCompletada(tarea)">
+            {{ tarea.descripcion }}
+            </span>
+        </mat-checkbox>
+
+        <span class="horas" [class.tachado]="estaCompletada(tarea)">
+            {{ tarea.horas }}h
+        </span>
+
+        <div class="tick-ok" *ngIf="estaCompletada(tarea)">✔</div>
+        </li>
+    </ul>
+    </div>
+
+    <div class="card">
+    <h3>COMPLETADOS</h3>
+    <ul>
+        <li *ngFor="let tarea of tareas_completadas">
+        <mat-checkbox checked disabled>
+            <span class="descripcion tachado">{{ tarea.descripcion }}</span>
+        </mat-checkbox>
+        <span class="horas tachado">{{ tarea.horas }}h</span>
+        </li>
+
+    </ul>
+    </div>
+</div>

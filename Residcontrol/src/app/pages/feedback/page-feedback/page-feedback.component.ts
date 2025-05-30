@@ -26,9 +26,9 @@ import { ModalRevisarFeedbackComponent } from '../../../components/modales/modal
   styleUrl: './page-feedback.component.scss'
 })
 export class PageFeedbackComponent {
-  tareasPendientes = [30, 50, 70]; // Mañana, Tarde, Noche
-  tareasCompletadas = [60, 40, 20];
-  cargaTrabajo = 65;
+  tareasPendientes = [10, 50, 75]; // Mañana, Tarde, Noche
+  tareasCompletadas = [90, 50, 25];
+  cargaTrabajo = 35;
 
   constructor(private dialog: MatDialog) {}
 

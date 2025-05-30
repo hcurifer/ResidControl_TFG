@@ -22,7 +22,7 @@ export class PageProgresoComponent {
     this.userFullName = this.authService.getUserFullName();
 
     // Simulación de carga de trabajo: 3 horas asignadas
-    const horasAsignadas = 3;
+    const horasAsignadas = 7;
     const jornadaTotal = 8 - 0.5;
     this.cargaPorcentaje = Math.round((horasAsignadas / jornadaTotal) * 100);
   }

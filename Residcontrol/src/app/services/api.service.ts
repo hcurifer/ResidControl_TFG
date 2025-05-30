@@ -66,6 +66,16 @@ export class ApiService {
     return this.http.get<any[]>(`${this.baseUrl}/alarmas/estado/pendiente/con-nombres`);
   }
 
+  // Envio de correo electrónico
+
+  postPeticionDia(data: {
+  fecha: string;
+  nombre: string;
+  apellidos: string;
+  emisor: string;
+  }) {
+    return this.http.post(`${this.baseUrl}/correo/peticion-dia`, data);
+  }
 
 
 }

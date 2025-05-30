@@ -10,6 +10,7 @@ import { PanelControlComponent } from '../../../components/panelControl/panel-co
 import { MatButton, MatButtonModule } from '@angular/material/button';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { AuthService } from '../../../services/auth.service';
+import { ModalPeticionDiaComponent } from '../../../components/modales/modalPeticionDia/modal-peticion-dia/modal-peticion-dia.component';
 
 @Component({
   selector: 'app-page-dashboard',
@@ -32,11 +33,21 @@ export class PageDashboardComponent {
   rolUsuario = '';
   usuario: any = null;
 
-  constructor(private authService: AuthService) {
-    this.usuario = this.authService.getUsuario();
-    this.rolUsuario = this.usuario?.rol || '';
-  }
+  constructor(
+    private authService: AuthService,
+    private dialog: MatDialog
+    ){
+      this.usuario = this.authService.getUsuario();
+      this.rolUsuario = this.usuario?.rol || '';
+    }
 
+  abrirModalPeticionDia() {
+    const { nombre, apellidos } = this.usuario;
+
+    this.dialog.open(ModalPeticionDiaComponent, {
+      data: { nombre, apellidos }
+    });
+  }
 
 
 }

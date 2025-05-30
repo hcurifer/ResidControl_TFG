@@ -1,9 +1,9 @@
 .card {
-  background-color: #fef9f4;
-  padding: 10px;
-  border-radius: 12px;
-  max-width: 420px;
-  box-sizing: border-box;
+    background-color: #fef9f4;
+    padding: 10px;
+    border-radius: 12px;
+    box-sizing: border-box;
+    width: 100%;
 }
 
 h3 {
@@ -12,29 +12,63 @@ h3 {
   font-size: 18px;
 }
 
-ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
 
 li {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 12px;
-  position: relative;
+  // color: #aaa;
+  // text-decoration: line-through;
   flex-wrap: wrap;
 }
 
+.horas {
+  margin-left: 24px;
+  //flex-shrink: 0;
+  //color: #aaa;
+}
+
+.descripcion {
+  //color: #aaa;
+  //text-decoration: line-through;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+  .card {
+    padding: 16px;
+    border-radius: 10px;
+  }
+
+  li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .horas {
+    margin-top: 4px;
+  }
+}
+
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/**
 .descripcion,
 .horas {
   color: #000;
 }
+*/  
 
-.descripcion.tachado,
-.horas.tachado {
+.tachado {
   position: relative;
+  text-decoration: line-through;
+  text-decoration-color: #888;
   color: #888;
 
   &::before {
@@ -44,7 +78,6 @@ li {
     left: 0;
     width: 100%;
     height: 2px;
-    background-color: red;
     animation: lineaTachado 0.5s ease forwards;
   }
 }

@@ -68,15 +68,20 @@ export class PanelControlComponent {
     });
   }
   abrirModalPeticionDia() {
-    this.dialog.open(ModalPeticionDiaComponent, {
-      data: {
-        to: 'admin@residencia.com'
-      },
-      disableClose: false,
-      hasBackdrop: true,
-      width: '420px'
-    });
-  }
+  const usuario = this.authService.getUsuario(); 
+  const { nombre, apellidos } = usuario;
+
+  this.dialog.open(ModalPeticionDiaComponent, {
+    data: {
+      nombre,
+      apellidos
+    },
+    disableClose: false,
+    hasBackdrop: true,
+    width: '420px'
+  });
+}
+
   abrirModalEliminarEmpleado() {
     this.dialog.open(ModalEliminarEmpleadoComponent, {
       width: '480px',
