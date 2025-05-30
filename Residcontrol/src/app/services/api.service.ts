@@ -65,6 +65,10 @@ export class ApiService {
   getAlarmasPendientesConNombres(): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}/alarmas/estado/pendiente/con-nombres`);
   }
+  deleteAlarma(id: number) {
+    return this.http.delete(`${this.baseUrl}/alarmas/${id}`);
+  }
+
 
   // Envio de correo electrónico
 

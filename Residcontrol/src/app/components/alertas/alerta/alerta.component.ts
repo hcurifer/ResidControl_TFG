@@ -31,6 +31,8 @@ interface Alerta {
 })
 export class AlertasComponent implements OnInit {
   alertas: Alerta[] = [];
+  usuario = JSON.parse(localStorage.getItem('user') || '{}');
+
 
   constructor(
     private api: ApiService,
@@ -109,4 +111,29 @@ export class AlertasComponent implements OnInit {
       }
     });
   }
+  eliminarAlarma(id: number): void {
+    if (!confirm('¿Estás seguro de que quieres eliminar esta alarma?')) return;
+
+    this.api.deleteAlarma(id).subscribe({
+      next: () => {
+        this.snackBar.open('🗑️ Alarma eliminada correctamente', 'Cerrar', {
+          duration: 3000,
+          horizontalPosition: 'center',
+          verticalPosition: 'top'
+        });
+        this.obtenerAlertas();
+      },
+      error: err => {
+        console.error('Error al eliminar la alarma:', err);
+        this.snackBar.open('❌ No se pudo eliminar la alarma', 'Cerrar', {
+          duration: 3000
+        });
+      }
+    });
+  }
+
+
+
+
+
 }

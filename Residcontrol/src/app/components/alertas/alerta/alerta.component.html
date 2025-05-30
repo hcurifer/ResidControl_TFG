@@ -16,5 +16,14 @@
     <span class="residente">👴 {{ alerta.residente }}</span>
     <span class="enfermero">🧑‍⚕️ {{ alerta.enfermero }}</span>
     <span class="tiempo">🕒 {{ alerta.tiempo }}</span>
+
+    <!-- Icono de eliminación solo si es rol == 'mando' -->
+    <mat-icon
+      *ngIf="usuario.rol === 'mando'"
+      (click)="eliminarAlarma(alerta.id_alarma)"
+      style="cursor: pointer; color: red; margin-left: 10px;"
+    >
+      delete
+    </mat-icon>
   </div>
 </div>
