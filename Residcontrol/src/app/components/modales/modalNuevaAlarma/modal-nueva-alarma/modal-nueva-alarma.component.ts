@@ -62,7 +62,6 @@ export class ModalNuevaAlarmaComponent implements OnInit {
 
   crearAlarma() {
     const nuevaAlarma = {
-      tipo: this.tipo,
       descripcion: this.descripcion,
       estado: 'pendiente',
       fecha: new Date().toISOString(),
