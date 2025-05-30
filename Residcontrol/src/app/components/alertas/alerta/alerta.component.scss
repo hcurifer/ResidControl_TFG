@@ -54,4 +54,44 @@
   grid-template-columns: 1fr auto auto auto;
   align-items: center;
   gap: 1rem;
+  margin-bottom: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+/* Animación nuevas alertas */
+.nueva-alerta {
+  animation: entradaNuevaAlerta 0.8s ease-out;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.6);
+  border: 2px solid red;
+}
+
+
+@keyframes entradaNuevaAlerta {
+  0% {
+    transform: scale(0.9);
+    background-color: #ffe5e5;
+  }
+  100% {
+    transform: scale(1);
+    background-color: #eee;
+  }
+}
+
+/* Diseño responsive para móviles */
+@media (max-width: 768px) {
+  .lista-alertas {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 1rem;
+  }
+
+  .lista-alertas mat-checkbox {
+    margin-bottom: 0.5rem;
+  }
+
+  .lista-alertas span {
+    margin-bottom: 0.3rem;
+  }
 }

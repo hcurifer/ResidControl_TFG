@@ -59,6 +59,12 @@ export class ApiService {
       params: { nuevo_estado: nuevoEstado }
     });
   }
+  getAlarmasPorEstado(estado: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/alarmas/estado/${estado}`);
+  }
+  getAlarmasPendientesConNombres(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/alarmas/estado/pendiente/con-nombres`);
+  }
 
 
 
