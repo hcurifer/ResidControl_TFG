@@ -27,7 +27,7 @@ import { AuthService } from '../../../services/auth.service';
 })
 export class PanelControlComponent {
   @Input() visible = true;
-  rolUsuario: string = 'Administrador';
+  rolUsuario: string = '';
   
 
   constructor(
@@ -35,7 +35,9 @@ export class PanelControlComponent {
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private router: Router
-  ) {}
+  ) {
+    this.rolUsuario = JSON.parse(localStorage.getItem('user') || '{}')?.rol || '';
+  }
 
   abrirModalCrearUsuario() {
     this.dialog.open(ModalCrearUsuarioComponent, {
