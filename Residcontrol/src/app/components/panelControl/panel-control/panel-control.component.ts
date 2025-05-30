@@ -13,7 +13,7 @@ import { ModalEliminarEmpleadoComponent } from '../../modales/modalEliminarEmple
 import { ModalEliminarResidenteComponent } from '../../modales/modalEliminarResidente/modal-eliminar-residente/modal-eliminar-residente.component';
 import { ModalCambioEstadoResidenteComponent } from '../../modales/modalCambioEstadoResidente/modal-cambio-estado-residente/modal-cambio-estado-residente.component';
 import { ModalRevisarNotificacionesComponent } from '../../modales/modalRevisarNotificaciones/modal-revisar-notificaciones/modal-revisar-notificaciones.component';
-
+import { AuthService } from '../../../services/auth.service';
 
 @Component({
   selector: 'app-panel-control',
@@ -31,6 +31,7 @@ export class PanelControlComponent {
   
 
   constructor(
+    private authService: AuthService,
     private dialog: MatDialog,
     private snackBar: MatSnackBar,
     private router: Router
@@ -112,7 +113,7 @@ export class PanelControlComponent {
 
 
   cerrarSesion() {
-  // Aquí puedes añadir lógica para limpiar datos si fuese necesario
+  this.authService.logout(); 
 
   this.snackBar.open('Sesión cerrada correctamente', 'Cerrar', {
     duration: 3000,
