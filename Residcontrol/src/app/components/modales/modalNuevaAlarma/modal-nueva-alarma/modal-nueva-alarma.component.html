@@ -1,30 +1,45 @@
 <h2>Nueva Alarma</h2>
 
+<!-- Descripción -->
 <mat-form-field appearance="fill" class="full-width">
   <mat-label>Descripción de la alarma</mat-label>
   <textarea matInput [(ngModel)]="descripcion" rows="3"></textarea>
 </mat-form-field>
 
+<!-- Tipo de alarma -->
+<mat-form-field appearance="fill" class="full-width">
+  <mat-label>Tipo de alerta</mat-label>
+  <mat-select [(ngModel)]="tipo">
+    <mat-option value="alarma">Alarma</mat-option>
+    <mat-option value="urgencia">Urgencia</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<!-- Selección de personal (usuarios) -->
 <mat-form-field appearance="fill" class="full-width">
   <mat-label>Personal responsable</mat-label>
-  <mat-select [(ngModel)]="personalSeleccionado">
-    <mat-option *ngFor="let persona of listaPersonal" [value]="persona">
-      {{ persona }}
+  <mat-select [(ngModel)]="idUsuarioSeleccionado">
+    <mat-option *ngFor="let persona of listaUsuarios" [value]="persona.id_usuario">
+      {{ persona.nombre }} {{ persona.apellidos }}
     </mat-option>
   </mat-select>
 </mat-form-field>
 
+<!-- Selección de residente -->
 <mat-form-field appearance="fill" class="full-width">
   <mat-label>Residente afectado</mat-label>
-  <mat-select [(ngModel)]="residenteSeleccionado">
-    <mat-option *ngFor="let residente of listaResidentes" [value]="residente">
-      {{ residente }}
+  <mat-select [(ngModel)]="idResidenteSeleccionado">
+    <mat-option *ngFor="let residente of listaResidentes" [value]="residente.id_residente">
+      {{ residente.nombre }} {{ residente.apellidos }}
     </mat-option>
   </mat-select>
 </mat-form-field>
 
+<!-- Botones -->
 <div class="button-group">
-  <button mat-raised-button color="primary" (click)="crearAlarma()" [disabled]="!descripcion || !personalSeleccionado || !residenteSeleccionado">
+  <button mat-raised-button color="primary"
+          (click)="crearAlarma()"
+          [disabled]="!descripcion || !idUsuarioSeleccionado || !idResidenteSeleccionado || !tipo">
     Crear alarma
   </button>
   <button mat-button (click)="cancelar()">Cancelar</button>
