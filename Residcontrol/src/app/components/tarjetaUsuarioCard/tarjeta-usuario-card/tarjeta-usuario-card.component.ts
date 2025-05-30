@@ -12,7 +12,8 @@ import { MatCardModule } from '@angular/material/card';
 export class UsuarioCardComponent {
   @Input() nombre!: string;
   @Input() apellidos!: string;
-  @Input() numeroEmpresas!: number;
+  @Input() numeroEmpresa!: string;
+  @Input() edad!: number;
   @Input() imagenUrl!: string;
   @Input() rol!: string;
   @Input() ultimoAcceso!: string;
