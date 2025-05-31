@@ -1,0 +1,23 @@
+{
+  "Enfermero Sala": [
+    { "descripcion": "Sentar a los residentes", "horas": 0.5 },
+    { "descripcion": "Dar de comer", "horas": 1.5 },
+    { "descripcion": "Repartir medicinas", "horas": 1 },
+    { "descripcion": "Limpiar sala", "horas": 2 }
+  ],
+  "Cuidador Baños": [
+    { "descripcion": "Ayudar en aseo", "horas": 1 },
+    { "descripcion": "Control de pañales", "horas": 1 },
+    { "descripcion": "Limpieza de baños", "horas": 2 }
+  ],
+  "Supervisión General": [
+    { "descripcion": "Revisión de rutinas", "horas": 1 },
+    { "descripcion": "Organización de equipos", "horas": 2 },
+    { "descripcion": "Reportes diarios", "horas": 1 }
+  ],
+  "Servicio de Limpieza": [
+    { "descripcion": "Limpieza de habitaciones", "horas": 2 },
+    { "descripcion": "Desinfección de superficies", "horas": 1 },
+    { "descripcion": "Revisión de suministros", "horas": 1 }
+  ]
+}

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
@@ -10,6 +10,9 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ApiService } from '../../../../services/api.service';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-modal-asignar-puesto',
@@ -25,38 +28,56 @@ import { MatNativeDateModule } from '@angular/material/core';
     MatCheckboxModule,
     MatTooltipModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule
   ],
   templateUrl: './modal-asignar-puesto.component.html',
   styleUrls: ['./modal-asignar-puesto.component.scss']
 })
-export class ModalAsignarPuestoComponent {
+export class ModalAsignarPuestoComponent implements OnInit {
   fecha: Date | null = null;
   turno = '';
-  persona = '';
-  personas = ['Carlos', 'Lucía', 'Ana'];
-
-  puestos = [
-    {
-      nombre: 'Enfermero Sala',
-      horas: 7,
-      tareas: ['Sentar a los residentes - 30min', 'Dar de comer - 1h 30min', 'Repartir medicinas - 1h', 'Limpiar sala - 2h']
-    },
-    {
-      nombre: 'Cuidador Baños',
-      horas: 6,
-      tareas: ['Ayudar en aseo - 1h', 'Control pañales - 1h', 'Limpieza baños - 2h']
-    },
-    {
-      nombre: 'Supervisión General',
-      horas: 8,
-      tareas: ['Revisión rutinas - 1h', 'Organización equipos - 2h', 'Reportes diarios - 1h']
-    }
-  ];
+  persona: number | null = null;
+  personas: any[] = [];
 
   puestosSeleccionados: string[] = [];
+  ObjectKeys = Object.keys;
 
-  constructor(private dialogRef: MatDialogRef<ModalAsignarPuestoComponent>) {}
+  puestos: { [nombre: string]: { descripcion: string; duracion: number }[] } = {
+    'Enfermero Sala': [
+      { descripcion: 'Sentar a los residentes', duracion: 30 },
+      { descripcion: 'Dar de comer', duracion: 90 },
+      { descripcion: 'Repartir medicinas', duracion: 60 },
+      { descripcion: 'Limpiar sala', duracion: 120 }
+    ],
+    'Cuidador Baños': [
+      { descripcion: 'Ayudar en aseo', duracion: 60 },
+      { descripcion: 'Control pañales', duracion: 60 },
+      { descripcion: 'Limpieza baños', duracion: 120 }
+    ],
+    'Supervisión General': [
+      { descripcion: 'Revisión rutinas', duracion: 60 },
+      { descripcion: 'Organización equipos', duracion: 120 },
+      { descripcion: 'Reportes diarios', duracion: 60 }
+    ],
+    'Servicio de Limpieza': [
+      { descripcion: 'Barrer zonas comunes', duracion: 45 },
+      { descripcion: 'Desinfección de superficies', duracion: 60 },
+      { descripcion: 'Reposición de material', duracion: 30 }
+    ]
+  };
+
+  constructor(
+    private dialogRef: MatDialogRef<ModalAsignarPuestoComponent>,
+    private apiService: ApiService,
+    private snackBar: MatSnackBar
+  ) {}
+
+  ngOnInit(): void {
+    this.apiService.getUsuarios().subscribe(data => {
+      this.personas = data;
+    });
+  }
 
   togglePuesto(nombre: string, checked: boolean) {
     if (checked) {
@@ -66,29 +87,58 @@ export class ModalAsignarPuestoComponent {
     }
   }
 
-  formatearTareas(tareas: string[]): string {
-    return tareas.join('\n');
-  }
-
   get horasTotales(): number {
-    return this.puestos
-      .filter(p => this.puestosSeleccionados.includes(p.nombre))
-      .reduce((total, p) => total + p.horas, 0);
+    return this.puestosSeleccionados.reduce((total, nombre) => {
+      return total + this.puestos[nombre].reduce((suma, t) => suma + t.duracion / 60, 0);
+    }, 0);
   }
 
   get botonDeshabilitado(): boolean {
     return !this.fecha || !this.turno || !this.persona || this.puestosSeleccionados.length === 0 || this.horasTotales > 8;
   }
 
-  enviar() {
-    console.log('PUESTOS ASIGNADOS:', {
-      fecha: this.fecha,
-      turno: this.turno,
-      persona: this.persona,
-      puestos: this.puestosSeleccionados
-    });
-    this.dialogRef.close();
+  formatearTareas(tareas: { descripcion: string; duracion: number }[]): string {
+    return tareas.map(t => `${t.descripcion} - ${t.duracion}min`).join('\n');
   }
+
+ enviar() {
+  if (!this.fecha || !this.turno || !this.persona || this.puestosSeleccionados.length === 0) {
+    this.snackBar.open('Completa todos los campos', 'Cerrar', { duration: 3000 });
+    return;
+  }
+
+  const fechaFormateada = format(this.fecha, 'yyyy-MM-dd');
+  const tareasAEnviar = [];
+
+  for (const puesto of this.puestosSeleccionados) {
+    const tareas = this.puestos[puesto] || [];
+    for (const tarea of tareas) {
+      tareasAEnviar.push(
+        this.apiService.postTarea({
+          descripcion: tarea.descripcion,
+          estado: 'pendiente',
+          fecha: fechaFormateada,
+          duracion_minutos: tarea.duracion,
+          id_usuario: Number(this.persona),
+          id_turno: null // cambiar cuando haya lógica de turnos
+        }).toPromise()
+      );
+    }
+  }
+
+  Promise.all(tareasAEnviar)
+    .then(() => {
+      this.snackBar.open('Tareas asignadas correctamente', 'Cerrar', {
+        duration: 3000,
+        horizontalPosition: 'center',
+        verticalPosition: 'top'
+      });
+      this.dialogRef.close();
+    })
+    .catch(() => {
+      this.snackBar.open('Error al asignar tareas', 'Cerrar', { duration: 3000 });
+    });
+}
 
   cancelar() {
     this.dialogRef.close();
