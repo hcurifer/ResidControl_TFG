@@ -3,7 +3,8 @@
   <app-menu
     [titulo]="'Panel de Alarmas'"
     [subtitulo]="'Gestión de alertas diarias'"
-  ></app-menu>
+    (fechaSeleccionada)="onFechaCambiada($event)"
+  ></app-menu> 
 <br>
   <!-- Panel de acciones -->
   <div class="alertas-panel">

@@ -68,6 +68,9 @@ export class ApiService {
   deleteAlarma(id: number) {
     return this.http.delete(`${this.baseUrl}/alarmas/${id}`);
   }
+  get<T>(endpoint: string): Observable<T> {
+    return this.http.get<T>(`${this.baseUrl}${endpoint}`);
+  }
 
 
   // Envio de correo electrónico
@@ -80,6 +83,24 @@ export class ApiService {
   }) {
     return this.http.post(`${this.baseUrl}/correo/peticion-dia`, data);
   }
+
+
+  // Tareas
+
+  getTareasFiltradas(id_enfermero: number, fecha: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.baseUrl}/tareas/filtrar`, {
+      params: {
+        id_enfermero,
+        fecha
+      }
+    });
+  }
+  putEstadoTarea(id_tarea: number, nuevoEstado: string) {
+  return this.http.put(`${this.baseUrl}/tareas/${id_tarea}/estado`, null, {
+    params: { nuevo_estado: nuevoEstado }
+  });
+}
+
 
 
 }
