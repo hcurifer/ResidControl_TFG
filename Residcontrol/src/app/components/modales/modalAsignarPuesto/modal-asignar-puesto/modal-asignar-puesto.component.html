@@ -19,19 +19,21 @@
 <mat-form-field appearance="fill" class="full-width">
   <mat-label>Persona</mat-label>
   <mat-select [(ngModel)]="persona">
-    <mat-option *ngFor="let p of personas" [value]="p">{{ p }}</mat-option>
+    <mat-option *ngFor="let p of personas" [value]="p.id_usuario">
+      {{ p.nombre }} {{ p.apellidos }}
+    </mat-option>
   </mat-select>
 </mat-form-field>
 
-<div *ngFor="let puesto of puestos">
+<div *ngFor="let puestoNombre of ObjectKeys(puestos)">
   <mat-checkbox
-    [checked]="puestosSeleccionados.includes(puesto.nombre)"
-    (change)="togglePuesto(puesto.nombre, $event.checked)"
-    [matTooltip]="formatearTareas(puesto.tareas)"
+    [checked]="puestosSeleccionados.includes(puestoNombre)"
+    (change)="togglePuesto(puestoNombre, $event.checked)"
+    [matTooltip]="formatearTareas(puestos[puestoNombre])"
     matTooltipPosition="above"
     matTooltipClass="tooltip-custom"
   >
-    {{ puesto.nombre }} - {{ puesto.horas }}h
+    {{ puestoNombre }} - {{ formatearTareas(puestos[puestoNombre]).split('\n').length }} tareas
   </mat-checkbox>
 </div>
 
