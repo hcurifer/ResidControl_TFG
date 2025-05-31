@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CommonModule, NgFor, NgIf } from '@angular/common';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-tareas-pendientes',
@@ -26,19 +27,23 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
   ]
 })
 export class TareasPendientesComponent {
-  @Input() tareas: { descripcion: string; horas: number }[] = [];
-  tareasCompletadas: Set<string> = new Set();
+ @Input() tareas: { id_tarea: number; descripcion: string; horas: number }[] = [];
+  tareasCompletadas: Set<number> = new Set();
 
-  completarTarea(tarea: { descripcion: string; horas: number }) {
-    this.tareasCompletadas.add(tarea.descripcion);
+  constructor(private apiService: ApiService) {}
 
-    setTimeout(() => {
-      this.tareas = this.tareas.filter(t => t.descripcion !== tarea.descripcion);
-      this.tareasCompletadas.delete(tarea.descripcion);
-    }, 1500); 
+  completarTarea(tarea: { id_tarea: number; descripcion: string; horas: number }) {
+    this.apiService.putEstadoTarea(tarea.id_tarea, 'completada').subscribe(() => {
+      this.tareasCompletadas.add(tarea.id_tarea);
+
+      setTimeout(() => {
+        this.tareas = this.tareas.filter(t => t.id_tarea !== tarea.id_tarea);
+        this.tareasCompletadas.delete(tarea.id_tarea);
+      }, 1500);
+    });
   }
 
-  estaCompletada(tarea: { descripcion: string }) {
-    return this.tareasCompletadas.has(tarea.descripcion);
+  estaCompletada(tarea: { id_tarea: number }) {
+    return this.tareasCompletadas.has(tarea.id_tarea);
   }
 }

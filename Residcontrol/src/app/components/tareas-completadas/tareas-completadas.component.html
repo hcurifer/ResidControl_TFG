@@ -1,12 +1,14 @@
 <div class="card">
-  <h3>COMPLETADOS</h3>
+  <h3>COMPLETADAS</h3>
   <ul>
-    <li *ngFor="let tarea of tareas">
-      <mat-checkbox checked disabled>
-        <span class="descripcion">{{ tarea.descripcion }}</span>
-      </mat-checkbox>
-      <span class="horas">{{ tarea.horas }}h</span>
+    <li *ngFor="let tarea of tareas" [@entradaSuave]>
+      <span class="descripcion">
+        {{ tarea.descripcion }}
+      </span>
+      <span class="horas">
+        {{ tarea.horas }}h
+      </span>
+      <div class="tick-ok">✔</div>
     </li>
-
   </ul>
 </div>

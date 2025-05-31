@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MenuComponent } from '../../../components/menu/menu.component';
 import { TareasPendientesComponent } from '../../../components/tareas-pendientes/tareas-pendientes.component';
 import { TareasCompletadasComponent } from '../../../components/tareas-completadas/tareas-completadas.component';
 import { TareasComponent } from "../../../components/tareas/tareas.component";
+import { format } from 'date-fns';
+import { ApiService } from '../../../services/api.service';
 
 @Component({
   selector: 'app-page-tareas',
@@ -12,21 +14,21 @@ import { TareasComponent } from "../../../components/tareas/tareas.component";
   templateUrl: './page-tareas.component.html',
   styleUrl: './page-tareas.component.scss'
 })
-export class PageTareasComponent {
-  tareasPendientes = [
-    { descripcion: 'Realizar cama residentes', horas: 4 },
-    { descripcion: 'Preparar medicina comida', horas: 2 },
-    { descripcion: 'Preparar bandejas comida', horas: 2 },
-    { descripcion: 'Preparar bandejas comida', horas: 2 },
-    { descripcion: 'Preparar medicina comida', horas: 2 },
-    { descripcion: 'Preparar bandejas comida', horas: 2 },
-    { descripcion: 'Preparar bandejas comida', horas: 2 }
-  ];
+export class PageTareasComponent implements OnInit {
+  tareasPendientes: any[] = [];
+  tareasCompletadas: any[] = [];
 
-  tareasCompletadas = [
-    { descripcion: 'Levantar a residentes', horas: 3 },
-    { descripcion: 'Recibir urgencia turno noche', horas: 2 },
-    { descripcion: 'Duchar residentes dependientes', horas: 2 },
-    { descripcion: 'Duchar residentes dependientes', horas: 2 }
-  ];
+  constructor(private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    const user = JSON.parse(localStorage.getItem('user')!);
+    const id_usuario = user?.id_usuario;
+    const hoy = format(new Date(), 'yyyy-MM-dd');
+
+    this.apiService.getTareasFiltradas(id_usuario, hoy).subscribe(tareas => {
+      this.tareasPendientes = tareas.filter(t => t.estado === 'pendiente');
+      this.tareasCompletadas = tareas.filter(t => t.estado === 'completada');
+    });
+  }
+
 }
