@@ -96,10 +96,16 @@ export class ApiService {
     });
   }
   putEstadoTarea(id_tarea: number, nuevoEstado: string) {
-  return this.http.put(`${this.baseUrl}/tareas/${id_tarea}/estado`, null, {
-    params: { nuevo_estado: nuevoEstado }
-  });
-}
+    return this.http.put(`${this.baseUrl}/tareas/${id_tarea}/estado`, null, {
+      params: { nuevo_estado: nuevoEstado }
+    });
+  }
+    postTarea(tarea: any) {
+    return this.http.post(`${this.baseUrl}/tareas/`, tarea);
+  }
+
+
+
 
 
 

@@ -19,7 +19,9 @@
 <mat-form-field appearance="fill" class="full-width">
   <mat-label>Asignar a</mat-label>
   <mat-select [(ngModel)]="usuarioSeleccionado">
-    <mat-option *ngFor="let user of usuarios" [value]="user">{{ user }}</mat-option>
+    <mat-option *ngFor="let user of usuarios" [value]="user.id_usuario">
+      {{ user.nombre }} {{ user.apellidos }}
+    </mat-option>
   </mat-select>
 </mat-form-field>
 
