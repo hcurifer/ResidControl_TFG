@@ -1,9 +1,18 @@
+<!-- NAVBAR -->
 <div class="navbar-container">
   <app-navbar></app-navbar>
 </div>
 
+<!-- CONTENIDO -->
 <div class="main-container">
-  <div class="login-container">
-    <app-login></app-login>
+  <!-- LOGIN NORMAL -->
+  <div class="login-container" *ngIf="!mostrarAnimacion">
+    <app-login (loginExitoso)="iniciarAnimacion()"></app-login>
+  </div>
+
+  <!-- ANIMACIÓN -->
+  <div *ngIf="mostrarAnimacion">
+    <app-login-animacion></app-login-animacion>
   </div>
 </div>
+
