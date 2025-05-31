@@ -71,6 +71,15 @@ export class ApiService {
   get<T>(endpoint: string): Observable<T> {
     return this.http.get<T>(`${this.baseUrl}${endpoint}`);
   }
+  postNotificacion(notificacion: {
+    tipo: string;
+    contenido: string;
+    fecha_envio: string;
+    id_usuario: number;
+    id_alarma: number;
+  }) {
+    return this.http.post(`${this.baseUrl}/notificaciones/`, notificacion);
+  }
 
 
   // Envio de correo electrónico
@@ -83,26 +92,50 @@ export class ApiService {
   }) {
     return this.http.post(`${this.baseUrl}/correo/peticion-dia`, data);
   }
+  // Envio de correo de notificación de alarma
+  postCorreoNotificacionAlarma(data: {
+    descripcion: string;
+    mensaje: string;
+    enfermero: string;
+    residente: string;
+  }) {
+    return this.http.post(`${this.baseUrl}/correo/notificar-alarma`, data);
+  }
+
+
 
 
   // Tareas
 
-  getTareasFiltradas(id_enfermero: number, fecha: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}/tareas/filtrar`, {
-      params: {
-        id_enfermero,
-        fecha
-      }
-    });
+  getTareasFiltradas(id_usuario: number, fecha: string, id_turno?: number, estado?: string) {
+    const params: any = { id_usuario, fecha };
+    if (id_turno !== undefined && id_turno !== null) {
+      params.id_turno = id_turno;
+    }
+    if (estado) {
+      params.estado = estado;
+    }
+
+    return this.http.get<any[]>(`${this.baseUrl}/tareas/filtrar`, { params });
   }
+
+
   putEstadoTarea(id_tarea: number, nuevoEstado: string) {
     return this.http.put(`${this.baseUrl}/tareas/${id_tarea}/estado`, null, {
       params: { nuevo_estado: nuevoEstado }
     });
   }
-    postTarea(tarea: any) {
+  postTarea(tarea: any) {
     return this.http.post(`${this.baseUrl}/tareas/`, tarea);
   }
+  getTareasPendientesPorUsuarioYFecha(id_usuario: number, fecha: string): Observable<any[]> {
+  return this.http.get<any[]>(`${this.baseUrl}/tareas/filtrar`, {
+      params: { id_usuario, fecha }
+    });
+  }
+  
+
+
 
 
 
