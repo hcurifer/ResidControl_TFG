@@ -12,15 +12,17 @@
   padding: 20px;
 }
 
+.image-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px; /* espacio entre imágenes */
+}
+
 .image {
   width: 120px;
   max-width: 40%;
-}
-.left {
-  margin-right: auto;
-}
-.right {
-  margin-left: auto;
+  height: auto;
 }
 
 .loading-text {

@@ -1,4 +1,4 @@
-import { Component, Input, computed } from '@angular/core';
+import { Component, Input, OnChanges, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -8,8 +8,8 @@ import { CommonModule } from '@angular/common';
   templateUrl: './progreso.component.html',
   styleUrls: ['./progreso.component.scss']
 })
-export class ProgressCircleComponent {
-  @Input() current = 0;
+export class ProgressCircleComponent implements OnChanges{
+  @Input() current: number = 0;
   @Input() max = 100;
   @Input() size = 100;
   @Input() label = ''; // nombre del indicador
@@ -34,5 +34,13 @@ export class ProgressCircleComponent {
 
   get dashOffset(): number {
     return this.circumference * (1 - this.percentage() / 100);
+  }
+
+  ngOnChanges(changes: any){
+    console.log(changes)
+    if (changes['current']) {
+      this.current = changes['current'].currentValue;
+      this.percentage = computed(() => Math.min(Math.max(this.current / this.max, 0), 1) * 100);
+    }
   }
 }

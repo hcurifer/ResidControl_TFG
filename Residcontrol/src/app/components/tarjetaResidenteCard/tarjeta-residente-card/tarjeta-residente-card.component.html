@@ -15,7 +15,7 @@
   </div>
 
   <div class="residente-card">
-    <img class="residente-imagen" [src]="residenteSeleccionado.imagen" alt="Foto residente" />
+    <img class="residente-imagen" [src]="'assets/residentes/' + residenteSeleccionado.nombre + '.jpg'" alt="Foto residente" />
     <div class="residente-info">
       <span class="nombre">{{ residenteSeleccionado.nombre }}</span>
       <span>{{ residenteSeleccionado.apellidos }}</span>

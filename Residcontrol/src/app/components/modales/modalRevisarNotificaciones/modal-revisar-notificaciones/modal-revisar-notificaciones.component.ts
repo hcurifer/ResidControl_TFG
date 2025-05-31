@@ -32,6 +32,7 @@ ngOnInit(): void {
   this.apiService.getNotificacionesConNombres().subscribe({
     next: (resp) => {
       this.notificaciones = resp;
+      console.log(resp)
     },
     error: () => {
       this.snackBar.open('Error al cargar notificaciones', 'Cerrar', { duration: 3000 });

@@ -1,37 +1,40 @@
-<h2>Notificar Alarma</h2>
+<div style="display: flex; flex-direction: column; gap: 10px">
 
-<mat-form-field appearance="fill" class="full-width">
-  <mat-label>Selecciona una alarma pendiente</mat-label>
-  <mat-select [(ngModel)]="alarmaSeleccionada">
-    <mat-option *ngFor="let alarma of alarmasPendientes" [value]="alarma">
-      {{ alarma.descripcion }}
-    </mat-option>
-  </mat-select>
-</mat-form-field>
+  <h2>Notificar Alarma</h2>
 
-<mat-form-field appearance="fill" class="full-width">
-  <mat-label>Tipo de notificación</mat-label>
-  <mat-select [(ngModel)]="tipoSeleccionado">
-    <mat-option value="recordatorio">Recordatorio</mat-option>
-    <mat-option value="seguimiento">Seguimiento</mat-option>
-    <mat-option value="rechazo">Rechazo</mat-option>
-    <mat-option value="urgente">Urgente</mat-option>
-  </mat-select>
-</mat-form-field>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Selecciona una alarma pendiente</mat-label>
+    <mat-select [(ngModel)]="alarmaSeleccionada">
+      <mat-option *ngFor="let alarma of alarmasPendientes" [value]="alarma">
+        {{ alarma.descripcion }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<mat-form-field appearance="fill" class="full-width">
-  <mat-label>Mensaje informativo</mat-label>
-  <textarea matInput [(ngModel)]="mensaje" rows="4"></textarea>
-</mat-form-field>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Tipo de notificación</mat-label>
+    <mat-select [(ngModel)]="tipoSeleccionado">
+      <mat-option value="recordatorio">Recordatorio</mat-option>
+      <mat-option value="seguimiento">Seguimiento</mat-option>
+      <mat-option value="rechazo">Rechazo</mat-option>
+      <mat-option value="urgente">Urgente</mat-option>
+    </mat-select>
+  </mat-form-field>
 
-<div class="button-group">
-  <button
-    mat-raised-button
-    color="primary"
-    (click)="enviarNotificacion()"
-    [disabled]="!alarmaSeleccionada || !mensaje || !tipoSeleccionado"
-  >
-    Enviar
-  </button>
-  <button mat-button (click)="cancelar()">Cancelar</button>
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Mensaje informativo</mat-label>
+    <textarea matInput [(ngModel)]="mensaje" rows="4"></textarea>
+  </mat-form-field>
+
+  <div class="button-group">
+    <button
+      mat-raised-button
+      color="primary"
+      (click)="enviarNotificacion()"
+      [disabled]="!alarmaSeleccionada || !mensaje || !tipoSeleccionado"
+    >
+      Enviar
+    </button>
+    <button mat-button (click)="cancelar()">Cancelar</button>
+  </div>
 </div>

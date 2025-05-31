@@ -10,7 +10,7 @@
 </mat-form-field>
 
 <div *ngIf="empleadoSeleccionado" class="empleado-info">
-  <img [src]="empleadoSeleccionado.imagen" alt="Foto empleado" class="foto">
+  <img [src]="'assets/user/' + empleadoSeleccionado.nombre + '.png'" alt="Foto empleado" class="foto">
   <div class="datos">
     <p><strong>Nombre:</strong> {{ empleadoSeleccionado.nombre }}</p>
     <p><strong>Apellidos:</strong> {{ empleadoSeleccionado.apellidos }}</p>

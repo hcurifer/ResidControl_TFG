@@ -16,11 +16,13 @@
         </mat-checkbox>
 
         <span class="horas" [class.tachado]="estaCompletada(tarea)">
-            {{ tarea.horas }}h
+            {{ formatDate(tarea.duracion_minutos) }}
         </span>
 
         <div class="tick-ok" *ngIf="estaCompletada(tarea)">✔</div>
         </li>
+        
+        <span *ngIf="tareas_pendientes.length == 0"> No hay tareas pendientes </span>
     </ul>
     </div>
 
@@ -31,9 +33,9 @@
         <mat-checkbox checked disabled>
             <span class="descripcion tachado">{{ tarea.descripcion }}</span>
         </mat-checkbox>
-        <span class="horas tachado">{{ tarea.horas }}h</span>
+        <span class="horas tachado">{{ formatDate(tarea.duracion_minutos) }}</span>
         </li>
-
+        <span *ngIf="tareas_completadas.length == 0"> No hay tareas completadas </span>
     </ul>
     </div>
 </div>

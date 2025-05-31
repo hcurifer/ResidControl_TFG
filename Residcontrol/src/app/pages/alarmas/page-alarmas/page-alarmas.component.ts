@@ -21,10 +21,17 @@ import { format } from 'date-fns';
 export class PageAlarmasComponent {
   totalAlertas = 0; 
   completadas = 0;
+  pendientes = 0;
   fechaSeleccionada: Date = new Date();  
+  porcentaje_completado!: number
 
   // Constuctores
   constructor(private dialog: MatDialog, private api: ApiService) {}
+
+  ngOnInit(){
+    const fechaFormateada = format(new Date(), 'yyyy-MM-dd');
+    this.getAlarmas(fechaFormateada)  
+  }
 
   abrirModalNuevaAlarma() {
     this.dialog.open(ModalNuevaAlarmaComponent, {
@@ -52,16 +59,22 @@ export class PageAlarmasComponent {
 
   onFechaCambiada(fecha: Date) {
     const fechaFormateada = format(fecha, 'yyyy-MM-dd');
+    this.getAlarmas(fechaFormateada)
+  }
 
-    this.api.get<any[]>(`/alarmas/filtrar?estado=completada&fecha=${fechaFormateada}`)
+  getAlarmas(fecha: string){
+    this.api.get<any[]>(`/alarmas/filtrar?estado=completada&fecha=${fecha}`)
       .subscribe(completadas => {
-        this.api.get<any[]>(`/alarmas/filtrar?estado=pendiente&fecha=${fechaFormateada}`)
+        this.completadas = completadas.length;
+        console.log('✅ Completadas:', completadas);
+        this.api.get<any[]>(`/alarmas/filtrar?estado=pendiente&fecha=${fecha}`)
           .subscribe(pendientes => {
-            console.log('✅ Completadas:', completadas);
             console.log('🟡 Pendientes:', pendientes);
 
-            this.completadas = completadas.length;
-            this.totalAlertas = completadas.length + pendientes.length;
+            this.pendientes = pendientes.length;
+            this.totalAlertas = this.completadas + this.pendientes;
+            this.porcentaje_completado = this.completadas/this.totalAlertas*100
+            console.log(this.porcentaje_completado)
           });
       });
   }

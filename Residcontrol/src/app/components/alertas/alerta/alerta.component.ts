@@ -41,7 +41,7 @@ export class AlertasComponent implements OnInit {
 
   ngOnInit(): void {
     this.obtenerAlertas();
-    setInterval(() => this.obtenerAlertas(), 2555000); //tiempo de 5s para refressh 5000
+    setInterval(() => this.obtenerAlertas(), 5000); //tiempo de 5s para refressh 5000
   }
 
  obtenerAlertas(): void {

@@ -13,6 +13,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { ApiService } from '../../../../services/api.service';
 import { format } from 'date-fns';
+import { DateService } from '../../../../services/date.service';
 
 @Component({
   selector: 'app-modal-asignar-puesto',
@@ -70,7 +71,8 @@ export class ModalAsignarPuestoComponent implements OnInit {
   constructor(
     private dialogRef: MatDialogRef<ModalAsignarPuestoComponent>,
     private apiService: ApiService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private dateService: DateService
   ) {}
 
   ngOnInit(): void {
@@ -98,7 +100,12 @@ export class ModalAsignarPuestoComponent implements OnInit {
   }
 
   formatearTareas(tareas: { descripcion: string; duracion: number }[]): string {
-    return tareas.map(t => `${t.descripcion} - ${t.duracion}min`).join('\n');
+    return tareas.map(t => `${t.descripcion} - ${this.dateService.formatHorasMinutos(t.duracion)}`).join('\n');
+  }
+
+  formatearHoras(tareas: { descripcion: string; duracion: number }[]): string {
+    const totalMinutos = tareas.reduce((acum, tarea) => acum + tarea.duracion, 0);
+    return this.dateService.formatHorasMinutos(totalMinutos)
   }
 
  enviar() {

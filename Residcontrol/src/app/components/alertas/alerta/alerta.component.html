@@ -1,6 +1,6 @@
 <div class="contenedor-alertas">
   <div class="cabecera">
-    <span class="titulo">Alarmas / Urgencias</span>
+    <span class="titulo">Total de Alarmas / Urgencias</span>
     <mat-icon class="icono-alerta pulse">priority_high</mat-icon>
   </div>
 
@@ -9,21 +9,22 @@
     *ngFor="let alerta of alertas"
     [class.nueva-alerta]="alerta.nueva"
   >
-    <mat-checkbox (change)="marcarComoHecha(alerta.id_alarma)">
-      {{ alerta.descripcion }}
-    </mat-checkbox>
+    <!-- Icono de eliminación solo si es rol == 'mando' -->
+     <div style="display: flex; align-items: center;">
+      <mat-icon
+        *ngIf="usuario.rol === 'mando'"
+        (click)="eliminarAlarma(alerta.id_alarma)"
+        style="cursor: pointer; color: red; margin-right: 10px;"
+      >
+        delete
+      </mat-icon>
+      <mat-checkbox (change)="marcarComoHecha(alerta.id_alarma)">
+        {{ alerta.descripcion }}
+      </mat-checkbox>
+     </div>
 
     <span class="residente">👴 {{ alerta.residente }}</span>
     <span class="enfermero">🧑‍⚕️ {{ alerta.enfermero }}</span>
     <span class="tiempo">🕒 {{ alerta.tiempo }}</span>
-
-    <!-- Icono de eliminación solo si es rol == 'mando' -->
-    <mat-icon
-      *ngIf="usuario.rol === 'mando'"
-      (click)="eliminarAlarma(alerta.id_alarma)"
-      style="cursor: pointer; color: red; margin-left: 10px;"
-    >
-      delete
-    </mat-icon>
   </div>
 </div>
