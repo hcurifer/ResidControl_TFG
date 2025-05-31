@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -23,6 +23,7 @@ import { AuthService } from '../../services/auth.service';
   ]
 })
 export class LoginComponent {
+  @Output() loginExitoso = new EventEmitter<void>(); 
   numeroEmpresa: string = '';
   password: string = '';
 
@@ -53,7 +54,8 @@ export class LoginComponent {
           verticalPosition: 'top'
         });
 
-        this.router.navigate(['/dashboard']);
+        //this.router.navigate(['/dashboard']);
+        this.loginExitoso.emit();
       },
       error: err => {
         this.snackBar.open(err.message, 'Cerrar', {
@@ -64,5 +66,6 @@ export class LoginComponent {
       }
     });
   }
+
 }
 
