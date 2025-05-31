@@ -20,15 +20,19 @@ export class PageTareasComponent implements OnInit {
 
   constructor(private apiService: ApiService) {}
 
-  ngOnInit(): void {
-    const user = JSON.parse(localStorage.getItem('user')!);
-    const id_usuario = user?.id_usuario;
-    const hoy = format(new Date(), 'yyyy-MM-dd');
+ ngOnInit(): void {
+  const user = JSON.parse(localStorage.getItem('user')!);
+  const id_usuario = user?.id_usuario;
+  const hoy = format(new Date(), 'yyyy-MM-dd');
 
-    this.apiService.getTareasFiltradas(id_usuario, hoy).subscribe(tareas => {
-      this.tareasPendientes = tareas.filter(t => t.estado === 'pendiente');
-      this.tareasCompletadas = tareas.filter(t => t.estado === 'completada');
-    });
-  }
+  this.apiService.getTareasFiltradas(id_usuario, hoy, undefined, 'pendiente').subscribe(tareas => {
+    this.tareasPendientes = tareas;
+  });
+
+  this.apiService.getTareasFiltradas(id_usuario, hoy, undefined, 'completada').subscribe(tareas => {
+    this.tareasCompletadas = tareas;
+  });
+}
+
 
 }

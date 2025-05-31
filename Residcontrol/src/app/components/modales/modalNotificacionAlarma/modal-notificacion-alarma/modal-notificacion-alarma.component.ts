@@ -7,6 +7,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { ApiService } from '../../../../services/api.service';
+import { AuthService } from '../../../../services/auth.service';
 
 @Component({
   selector: 'app-modal-notificacion-alarma',
@@ -25,39 +27,68 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
   styleUrls: ['./modal-notificacion-alarma.component.scss']
 })
 export class ModalNotificacionAlarmaComponent {
-  alarmaSeleccionada: string = '';
+  alarmasPendientes: any[] = [];
+  alarmaSeleccionada: any = null;
   mensaje: string = '';
-
-  alarmasPendientes: string[] = [
-    'Residente Ana - Caída en baño',
-    'Residente Luis - Ausencia prolongada',
-    'Residente Marta - Grito de auxilio'
-  ];
+  tipoSeleccionado: string = '';
 
   constructor(
     private dialogRef: MatDialogRef<ModalNotificacionAlarmaComponent>,
-    private snackBar: MatSnackBar
-  ) {}
+    private snackBar: MatSnackBar,
+    private apiService: ApiService,
+    private auth: AuthService
+  ) {
+    this.cargarAlarmas();
+  }
+
+  cargarAlarmas() {
+    this.apiService.getAlarmasPendientesConNombres().subscribe({
+      next: (resp) => {
+        this.alarmasPendientes = resp;
+      },
+      error: () => {
+        this.snackBar.open('Error al cargar alarmas', 'Cerrar', { duration: 3000 });
+      }
+    });
+  }
 
   enviarNotificacion() {
-    const asunto = 'Notificación sobre la alarma';
-    const cuerpo = `
-IMPORTANTE: notificación sobre alarma
+    const usuario = this.auth.getUsuario();
 
-Alarma: ${this.alarmaSeleccionada}
+    // Datos para FastAPI (correo)
+    const dataCorreo = {
+      tipo: this.tipoSeleccionado,
+      descripcion: this.alarmaSeleccionada.descripcion,
+      mensaje: this.mensaje,
+      enfermero: this.alarmaSeleccionada.enfermero,
+      residente: this.alarmaSeleccionada.residente
+    };
 
-${this.mensaje}
-    `.trim();
+    // Datos para registro en BD
+    const dataNotificacion = {
+      tipo: this.tipoSeleccionado,
+      contenido: this.mensaje,
+      fecha_envio: new Date().toISOString(),
+      id_usuario: usuario.id_usuario,
+      id_alarma: this.alarmaSeleccionada.id_alarma
+    };
 
-    console.log('NOTIFICACIÓN ENVIADA:', { asunto, cuerpo });
-
-    this.snackBar.open('Notificación enviada correctamente', 'Cerrar', {
-      duration: 3000,
-      horizontalPosition: 'center',
-      verticalPosition: 'top'
+    this.apiService.postCorreoNotificacionAlarma(dataCorreo).subscribe({
+      next: () => {
+        this.apiService.postNotificacion(dataNotificacion).subscribe({
+          next: () => {
+            this.snackBar.open('Notificación enviada y registrada', 'Cerrar', { duration: 3000 });
+            this.dialogRef.close();
+          },
+          error: () => {
+            this.snackBar.open('Error al guardar notificación', 'Cerrar', { duration: 3000 });
+          }
+        });
+      },
+      error: () => {
+        this.snackBar.open('Error al enviar el correo', 'Cerrar', { duration: 3000 });
+      }
     });
-
-    this.dialogRef.close();
   }
 
   cancelar() {
