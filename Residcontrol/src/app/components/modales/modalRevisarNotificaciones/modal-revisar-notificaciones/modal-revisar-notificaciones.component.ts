@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatListModule } from '@angular/material/list';
 import { MatButtonModule } from '@angular/material/button';
+import { ApiService } from '../../../../services/api.service';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-modal-revisar-notificaciones',
@@ -11,32 +13,31 @@ import { MatButtonModule } from '@angular/material/button';
     CommonModule,
     MatDialogModule,
     MatListModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSnackBarModule
   ],
   templateUrl: './modal-revisar-notificaciones.component.html',
   styleUrl: './modal-revisar-notificaciones.component.scss'
 })
-export class ModalRevisarNotificacionesComponent {
-  notificaciones = [
-    {
-      usuario: 'Carlos Rodríguez',
-      alarma: 'Alarma 021',
-      texto: 'No se pudo completar la alarma de caída.',
-      fecha: new Date('2025-05-26T15:30:00')
+export class ModalRevisarNotificacionesComponent implements OnInit {
+  notificaciones: any[] = [];
+
+  constructor(
+    private dialogRef: MatDialogRef<ModalRevisarNotificacionesComponent>,
+    private apiService: ApiService,
+    private snackBar: MatSnackBar
+  ) {}
+
+ngOnInit(): void {
+  this.apiService.getNotificacionesConNombres().subscribe({
+    next: (resp) => {
+      this.notificaciones = resp;
     },
-    {
-      usuario: 'Lucía Pérez',
-      alarma: 'Alarma 020',
-      texto: 'Falta supervisión en sala 2.',
-      fecha: new Date('2025-05-26T14:50:00')
+    error: () => {
+      this.snackBar.open('Error al cargar notificaciones', 'Cerrar', { duration: 3000 });
     }
-    // ...
-  ]
-    .sort((a, b) => b.fecha.getTime() - a.fecha.getTime())
-    .slice(0, 10);
-
-
-  constructor(private dialogRef: MatDialogRef<ModalRevisarNotificacionesComponent>) {}
+  });
+}
 
   cerrar() {
     this.dialogRef.close();

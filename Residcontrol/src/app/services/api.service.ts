@@ -134,9 +134,16 @@ export class ApiService {
     });
   }
   
-
-
-
+  // Notificaciones
+  getNotificaciones() {
+    return this.http.get<any[]>(`${this.baseUrl}/notificaciones/`);
+  }
+  getNotificacionesConNombres() {
+    return this.http.get<any[]>(`${this.baseUrl}/notificaciones/con-nombres`);
+  }
+  getUltimasNotificaciones() {
+    return this.http.get<any[]>(`${this.baseUrl}/notificaciones/ultimas`);
+  }
 
 
 

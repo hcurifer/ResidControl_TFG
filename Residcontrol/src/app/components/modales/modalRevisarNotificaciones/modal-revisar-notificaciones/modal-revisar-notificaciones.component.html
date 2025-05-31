@@ -1,11 +1,13 @@
-<h2 class="titulo">Notificaciones recientes</h2>
+<h2 class="titulo">Últimas Notificaciones</h2>
 
 <mat-list-item *ngFor="let notif of notificaciones">
   <div class="notificacion">
-    <p><strong>Usuario:</strong> {{ notif.usuario }}</p>
+    <p><strong>Tipo:</strong> {{ notif.tipo }}</p>
+    <p><strong>Mensaje:</strong> "{{ notif.contenido }}"</p>
     <p><strong>Alarma:</strong> {{ notif.alarma }}</p>
-    <p><strong>Mensaje:</strong> "{{ notif.texto }}"</p>
-    <p><strong>Fecha:</strong> {{ notif.fecha | date:'short' }}</p>
+    <p><strong>Usuario:</strong> {{ notif.usuario }}</p>
+    <p><strong>Residente:</strong> {{ notif.residente }}</p>
+    <p><strong>Fecha:</strong> {{ notif.fecha_envio | date:'short' }}</p>
   </div>
 </mat-list-item>
 
